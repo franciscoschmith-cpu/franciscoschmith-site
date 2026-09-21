@@ -48,7 +48,7 @@
   --step-2:  clamp(1.44rem, 1.30rem + 0.70vw, 1.90rem);
   --step-3:  clamp(1.73rem, 1.50rem + 1.15vw, 2.50rem);
   --step-4:  clamp(2.07rem, 1.70rem + 1.85vw, 3.30rem);
-  --step-5:  clamp(2.49rem, 1.90rem + 2.95vw, 4.35rem);
+  --step-5:  clamp(2.35rem, 1.85rem + 2.45vw, 3.85rem);
 
   /* Espaçamento */
   --space-1: 0.25rem;
@@ -231,12 +231,14 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .btn:hover { transform: translateY(-2px); }
 .btn:active { transform: translateY(0); }
 
+/* Verde claro com texto verde-escuro: 6.35:1.
+   Branco sobre o --brand-500 dava 4.31:1 e reprovava em texto de botão. */
 .btn--primary {
-  background: var(--brand-500);
-  color: #FFFFFF;                /* 4.8:1 sobre --brand-500 */
+  background: var(--brand-400);
+  color: #06231B;
   box-shadow: var(--shadow-brand);
 }
-.btn--primary:hover { background: var(--brand-400); color: #06231B; }
+.btn--primary:hover { background: var(--brand-300); }
 
 .btn--ghost {
   background: transparent;
@@ -326,4 +328,194 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   }
   .reveal { opacity: 1; transform: none; }
   .card:hover, .btn:hover { transform: none; }
+}
+
+/* =========================================================================
+   Etapa 3: header e hero
+   ========================================================================= */
+
+/* ---------- Header ---------- */
+/* Começa transparente para não criar degrau sobre o hero preto.
+   Ganha fundo e desfoque só depois que a página rola. */
+.site-header {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 50;
+  background: transparent;
+  border-bottom: 1px solid transparent;
+  transition: background-color var(--dur-base) var(--ease-out),
+              border-color var(--dur-base) var(--ease-out),
+              backdrop-filter var(--dur-base) var(--ease-out);
+}
+.site-header.is-stuck {
+  background: rgba(7, 8, 9, 0.88);
+  border-bottom-color: var(--hairline-dark);
+  -webkit-backdrop-filter: saturate(140%) blur(14px);
+  backdrop-filter: saturate(140%) blur(14px);
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+  padding-block: var(--space-4);
+}
+
+.brand {
+  font-family: var(--font-display);
+  font-size: 1.06rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--on-dark);
+  white-space: nowrap;
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+  margin-inline: auto;
+}
+/* 10.2:1 sobre o preto do hero. O cinza anterior dava 2.6:1. */
+.site-nav a {
+  position: relative;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--on-dark-muted);
+  padding-block: var(--space-2);
+  transition: color var(--dur-fast) var(--ease-out);
+}
+.site-nav a::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 1px;
+  background: var(--brand-300);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--dur-base) var(--ease-out);
+}
+.site-nav a:hover { color: var(--on-dark); }
+.site-nav a:hover::after { transform: scaleX(1); }
+
+.site-header__cta { padding: 0.62rem 1.15rem; min-height: 42px; font-size: 0.92rem; }
+
+/* Botão de menu, só no celular */
+.nav-toggle {
+  display: none;
+  width: 44px; height: 44px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  cursor: pointer;
+}
+.nav-toggle span {
+  display: block;
+  width: 20px; height: 2px;
+  background: var(--on-dark);
+  border-radius: 2px;
+  transition: transform var(--dur-base) var(--ease-out),
+              opacity var(--dur-fast) var(--ease-out);
+}
+.nav-toggle[aria-expanded="true"] span:first-child { transform: translateY(3.5px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] span:last-child { transform: translateY(-3.5px) rotate(-45deg); }
+
+.nav-mobile {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: var(--space-2) var(--gutter) var(--space-5);
+  background: rgba(7, 8, 9, 0.97);
+  border-bottom: 1px solid var(--hairline-dark);
+}
+.nav-mobile[hidden] { display: none; }
+.nav-mobile a {
+  padding: var(--space-3) 0;
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: var(--on-dark-muted);
+  border-bottom: 1px solid var(--hairline-dark);
+}
+.nav-mobile a:last-child { border-bottom: 0; }
+
+/* ---------- Hero ---------- */
+.hero {
+  background: var(--ink-900);
+  padding-block: calc(var(--section-y) + 4.5rem) var(--section-y);
+  --glow-x: 72%;
+  --glow-y: 30%;
+}
+
+.hero__grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  align-items: center;
+  gap: clamp(2rem, 1rem + 4vw, 4.5rem);
+}
+
+.hero__copy { display: flex; flex-direction: column; gap: var(--space-5); }
+.hero__copy h1 { max-width: 100%; }
+.hero__copy .lead { max-width: 46ch; }
+
+.hero__ctas { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+
+.hero__proof {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--step--1);
+  color: var(--on-dark-muted);
+  max-width: none;
+}
+.hero__sep { color: var(--brand-400); }
+
+/* Retrato emoldurado. Sem recorte: a moldura é proposital,
+   com o brilho da marca atrás e a base dissolvendo no fundo. */
+.hero__portrait { display: flex; justify-content: center; }
+
+.portrait {
+  position: relative;
+  margin: 0;
+  width: 100%;
+  max-width: 380px;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  border: 1px solid var(--hairline-dark-strong);
+  box-shadow: var(--shadow-lg);
+  isolation: isolate;
+}
+.portrait img {
+  width: 100%;
+  height: auto;
+  filter: saturate(0.92) contrast(1.04);
+}
+/* Dissolve a base da foto no preto da seção */
+.portrait::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 32%;
+  background: linear-gradient(to top, var(--ink-900) 8%, transparent 100%);
+  pointer-events: none;
+}
+
+/* ---------- Responsivo ---------- */
+@media (max-width: 900px) {
+  .site-nav { display: none; }
+  .nav-toggle { display: flex; }
+  .site-header__cta { margin-inline-start: auto; }
+
+  .hero__grid { grid-template-columns: 1fr; }
+  .hero__copy { order: 1; }
+  .hero__portrait { order: 2; }
+  .hero__copy h1 { max-width: 20ch; }
+  .portrait { max-width: 320px; }
+}
+
+@media (max-width: 560px) {
+  .site-header__cta { font-size: 0.85rem; padding: 0.55rem 0.95rem; }
+  .brand { font-size: 0.98rem; }
+  .hero__ctas .btn { width: 100%; }
 }
