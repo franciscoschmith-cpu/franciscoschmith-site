@@ -528,3 +528,224 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   .nav-toggle { width: 38px; }
   .hero__ctas .btn { width: 100%; }
 }
+
+/* =========================================================================
+   Etapa 4 e 5: dores, serviços e casos
+   ========================================================================= */
+
+.section > .shell > h2 { max-width: 20ch; }
+.section > .shell > .eyebrow + h2 { margin-top: var(--space-3); }
+
+/* ---------- Dores ---------- */
+.dores {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+  margin-top: var(--space-7);
+}
+.dor {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-6);
+}
+.dor p { font-size: var(--step-1); line-height: 1.45; max-width: none; }
+
+/* ---------- Serviços: grade bento ---------- */
+.servicos {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--space-4);
+  margin-top: var(--space-7);
+}
+.servico { padding: var(--space-6); grid-column: span 12; }
+.servico--wide { grid-column: span 7; }
+.servico + .servico:not(.servico--full) { grid-column: span 5; }
+.servico--full { grid-column: span 12; }
+
+.servico h3 { margin-bottom: var(--space-5); }
+
+.servico__specs { margin: 0; display: grid; gap: var(--space-2); }
+.servico__specs dt {
+  font-family: var(--font-display);
+  font-size: var(--step--1);
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--brand-300);
+}
+.servico__specs dd {
+  margin: 0 0 var(--space-4);
+  color: var(--on-dark-muted);
+  max-width: 52ch;
+}
+.servico__specs dd:last-child { margin-bottom: 0; }
+
+/* Na versão larga, os três blocos ficam lado a lado */
+.servico--full .servico__specs {
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-5);
+}
+.servico--full .servico__specs dt { grid-row: 1; }
+.servico--full .servico__specs dd { grid-row: 2; margin-bottom: 0; }
+
+/* ---------- Casos ---------- */
+.caso {
+  display: grid;
+  gap: var(--space-6);
+  padding: var(--space-6);
+  overflow: hidden;
+}
+.caso__cliente {
+  font-family: var(--font-display);
+  font-size: var(--step--1);
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--on-light-muted);
+  margin-bottom: var(--space-2);
+}
+.caso h3 { margin-bottom: var(--space-5); }
+
+.caso__specs { margin: 0; }
+.caso__specs dt {
+  font-family: var(--font-display);
+  font-size: var(--step--1);
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--brand-600);
+}
+.caso__specs dd {
+  margin: var(--space-1) 0 var(--space-4);
+  color: var(--on-light-muted);
+  max-width: 54ch;
+}
+
+.caso__privado {
+  font-size: var(--step--1);
+  color: var(--on-light-muted);
+  font-style: italic;
+}
+
+.caso__nota {
+  margin-top: var(--space-4);
+  font-size: var(--step--1);
+  line-height: 1.5;
+  color: var(--on-light-muted);
+  max-width: 46ch;
+}
+
+.link-forte {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-weight: 600;
+  color: var(--on-light);
+  border-bottom: 2px solid var(--brand-400);
+  padding-bottom: 2px;
+  transition: gap var(--dur-fast) var(--ease-out);
+}
+.link-forte:hover { gap: var(--space-3); }
+
+/* Destaque: texto de um lado, dispositivo do outro */
+.caso--destaque {
+  grid-template-columns: 0.9fr 1.1fr;
+  align-items: center;
+  margin-top: var(--space-7);
+  padding: var(--space-7);
+}
+
+/* Secundários */
+.casos-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4);
+  margin-top: var(--space-4);
+}
+.caso--larga { grid-column: 1 / -1; grid-template-columns: 0.9fr 1.1fr; align-items: center; }
+
+/* ---------- Molduras de dispositivo ---------- */
+.caso__visual { position: relative; }
+
+.device { position: relative; }
+
+.device--laptop .device__screen {
+  border: 9px solid #15181B;
+  border-radius: 12px;
+  background: #15181B;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+.device--laptop .device__screen img { width: 100%; height: auto; }
+
+/* Câmera no topo da moldura */
+.device--laptop .device__screen::before {
+  content: "";
+  position: absolute;
+  top: 3px; left: 50%;
+  width: 4px; height: 4px;
+  margin-left: -2px;
+  border-radius: 50%;
+  background: #33383D;
+}
+
+.device--laptop .device__base {
+  height: 9px;
+  margin-inline: -4%;
+  border-radius: 0 0 9px 9px;
+  background: linear-gradient(180deg, #24282C 0%, #14171A 100%);
+  box-shadow: 0 10px 18px -12px rgba(0,0,0,0.6);
+}
+
+.device--phone .device__screen {
+  border: 6px solid #15181B;
+  border-radius: 22px;
+  background: #15181B;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+.device--phone .device__screen img { width: 100%; height: auto; }
+/* Recorte da câmera */
+.device--phone .device__screen::before {
+  content: "";
+  position: absolute;
+  top: 8px; left: 50%;
+  width: 34%; height: 8px;
+  transform: translateX(-50%);
+  border-radius: 0 0 7px 7px;
+  background: #15181B;
+  z-index: 2;
+}
+
+/* O celular encostado no canto do notebook */
+.device--overlap {
+  position: absolute;
+  right: -2%;
+  bottom: -9%;
+  width: 21%;
+  max-width: 108px;
+}
+
+/* ---------- Responsivo ---------- */
+@media (max-width: 900px) {
+  .dores { grid-template-columns: 1fr; }
+  .servico, .servico--wide, .servico + .servico:not(.servico--full) { grid-column: span 12; }
+  .servico--full .servico__specs { grid-template-columns: 1fr; }
+  .servico--full .servico__specs dt { grid-row: auto; }
+  .servico--full .servico__specs dd { grid-row: auto; margin-bottom: var(--space-4); }
+
+  .caso--destaque, .caso--larga { grid-template-columns: 1fr; }
+  .casos-grid { grid-template-columns: 1fr; }
+
+  /* No celular o texto vem antes da imagem em todo caso */
+  .caso__texto { order: 1; }
+  .caso__visual { order: 2; }
+
+  .device--overlap { width: 19%; max-width: 88px; bottom: -7%; }
+}
+
+@media (max-width: 560px) {
+  .caso, .caso--destaque { padding: var(--space-5); }
+  .device--overlap { display: none; }
+}
