@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Francisco Schmith — Desenvolvedor de Sistemas</title>
+<meta name="description" content="Desenvolvedor autodidata que constrói sistemas sob medida: chaveamento de torneios, painéis de gestão e sites institucionais. Fale no WhatsApp.">
+<meta property="og:title" content="Francisco Schmith — Desenvolvedor de Sistemas">
+<meta property="og:description" content="Construo sistemas que resolvem problemas de verdade.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Anonymous+Pro:wght@400;700&family=Orbitron:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FDFDFC;
+    --surface: #FFFFFF;
+    --line: #E9E8E4;
+    --text: #0B0B0A;
+    --text-2: #75736C;
+    --dark: #0A0A09;
+    --dark-line: rgba(255,255,255,0.12);
+    --dark-text-2: #9A978E;
+    --accent: #0F8A6B;
+    --accent-a44: rgba(15,138,107,0.267);
+    --accent-a66: rgba(15,138,107,0.4);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--bg); font-family: 'Plus Jakarta Sans', sans-serif; color: var(--text); }
+  a { color: inherit; text-decoration: none; }
+  #sobre, #projetos { scroll-margin-top: 88px; }
+  .mono { font-family: 'Anonymous Pro', monospace; }
+  .display-future { font-family: 'Orbitron', sans-serif; font-weight: 600; }
+  .btn { transition: transform .15s ease, opacity .15s ease; cursor: pointer; }
+  .btn:hover { transform: translateY(-2px); opacity: 0.88; }
+  a:focus-visible, .btn:focus-visible, button:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; border-radius: 4px; }
+  .mockup-trigger { transition: opacity .15s ease; }
+  .mockup-trigger:hover { opacity: 0.85; }
+  .mockup-modal-backdrop { position: fixed; inset: 0; background: rgba(10,10,9,0.75); backdrop-filter: blur(4px); z-index: 100; display: flex; align-items: center; justify-content: center; padding: 24px; box-sizing: border-box; }
+  .mockup-modal-backdrop[hidden] { display: none; }
+  .mockup-modal-panel { position: relative; width: 100%; max-width: 480px; background: var(--surface); border-radius: 20px; padding: 32px; box-sizing: border-box; display: flex; flex-direction: column; gap: 18px; }
+  .mockup-modal-close { position: absolute; top: 16px; right: 16px; width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--line); background: var(--surface); cursor: pointer; font-size: 16px; line-height: 1; color: var(--text); }
+  h1, h2 { text-wrap: balance; }
+  .card { border-color: var(--line); }
+  .card:hover { border-color: #D7D5CE; box-shadow: 0 16px 32px -20px rgba(11,11,10,0.25); }
+  .project-card { transform: perspective(700px) rotateX(0deg) rotateY(0deg) translateY(0px); transition: transform .5s ease; will-change: transform; }
+  .blob { filter: blur(70px); }
+  @keyframes riseIn { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+  .rise { opacity: 0; animation: riseIn .7s cubic-bezier(.16,1,.3,1) forwards; }
+  @keyframes floatHero { 0% { transform: translateY(0) scale(1); } 50% { transform: translateY(-14px) scale(1.05); } 100% { transform: translateY(0) scale(1); } }
+  .blob-hero { animation: floatHero 8s ease-in-out infinite; }
+  @keyframes floatFoot { 0% { transform: translateY(0) scale(1); } 50% { transform: translateY(-16px) scale(1.06); } 100% { transform: translateY(0) scale(1); } }
+  .blob-foot { animation: floatFoot 9s ease-in-out infinite; }
+  .grid-bg { background-image: radial-gradient(rgba(255,255,255,0.09) 1px, transparent 1.5px); background-size: 28px 28px; }
+  @keyframes pulseDot { 0% { box-shadow: 0 0 0 0 rgba(15,138,107,0.55); } 70% { box-shadow: 0 0 0 8px rgba(15,138,107,0); } 100% { box-shadow: 0 0 0 0 rgba(15,138,107,0); } }
+  .pulse-dot { animation: pulseDot 2.2s ease-out infinite; }
+  @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+  @keyframes spinRev { from { transform: rotate(360deg); } to { transform: rotate(0deg); } }
+  .orbit-ring { animation: spin 9s linear infinite; }
+  .orbit-ring.rev { animation: spinRev 6.5s linear infinite; }
+  .orbit-ring.slow { animation: spin 13s linear infinite; }
+  @media (prefers-reduced-motion: reduce) {
+    .rise { animation: none !important; opacity: 1 !important; }
+    .blob-hero, .blob-foot, .orbit-ring, .pulse-dot { animation: none !important; }
+    .project-card { transition: none !important; }
+  }
+  @media (max-width: 860px) {
+    .nav { padding: 16px 20px !important; }
+    .nav-link { display: none !important; }
+    .hero { padding: 56px 20px 64px !important; }
+    .hero-grid { flex-direction: column !important; gap: 40px !important; }
+    .hero-title { font-size: 36px !important; }
+    .about { flex-direction: column !important; text-align: center; padding: 32px 20px 56px !important; }
+    .about .about-copy { align-items: center; }
+    .projects { padding: 12px 20px 56px !important; }
+    .projects-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+    .contact { padding: 56px 20px !important; }
+    .footer { padding: 18px 20px !important; }
+  }
+  @media (max-width: 560px) {
+    .hero-title { font-size: 30px !important; }
+    .projects-grid { grid-template-columns: minmax(0, 1fr) !important; }
+    .hero-orbit { width: 220px !important; height: 220px !important; }
+  }
+</style>
+</head>
+<body>
+<div style="width: 100%; min-height: 100vh; display: flex; flex-direction: column; position: relative; overflow: hidden;">
+
+  <!-- NAV -->
+  <div class="nav" style="width: 100%; box-sizing: border-box; padding: 20px 64px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; background: rgba(10,10,9,0.7); backdrop-filter: blur(10px); z-index: 10; border-bottom: 1px solid var(--dark-line);">
+    <div class="display-future" style="font-size: 15px; letter-spacing: 0.02em; color: #FFFFFF;">FRANCISCO<span style="color: var(--accent);">.</span>SCHMITH</div>
+    <div style="display: flex; align-items: center; gap: 28px;">
+      <a href="#sobre" class="nav-link" style="font-size: 14px; color: var(--dark-text-2); font-weight: 500;">Sobre</a>
+      <a href="#projetos" class="nav-link" style="font-size: 14px; color: var(--dark-text-2); font-weight: 500;">Projetos</a>
+      <a href="https://wa.me/5545999916583" target="_blank" rel="noopener" class="btn" style="font-size: 14px; font-weight: 600; padding: 10px 20px; border-radius: 999px; background: var(--accent); color: #FFFFFF;">Fale comigo</a>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero grid-bg" style="width: 100%; box-sizing: border-box; padding: 100px 64px 110px; background: var(--dark); position: relative; overflow: hidden;">
+    <div class="blob blob-hero" style="position: absolute; top: 10%; right: 6%; width: 380px; height: 380px; background: var(--accent); opacity: 0.22; border-radius: 999px; z-index: 0;"></div>
+
+    <div class="hero-grid" style="max-width: 1180px; margin: 0 auto; display: flex; gap: 64px; align-items: center; position: relative; z-index: 1;">
+      <div style="flex: 1.1; display: flex; flex-direction: column; gap: 22px; min-width: 0;">
+        <div class="rise mono" style="animation-delay: .02s; font-size: 13px; font-weight: 500; color: var(--accent); letter-spacing: 0.02em;">// desenvolvedor de produtos digitais</div>
+
+        <h1 class="rise hero-title" style="animation-delay: .1s; margin: 0; font-size: 54px; line-height: 1.08; font-weight: 800; letter-spacing: -0.03em; color: #FFFFFF;">Construo sistemas que resolvem problemas de verdade.</h1>
+
+        <p class="rise" style="animation-delay: .2s; margin: 0; font-size: 17px; line-height: 1.65; color: var(--dark-text-2); max-width: 480px;">De gestão de torneios a plataformas de gestão para negócios locais — pego processos bagunçados e transformo em algo simples de usar no dia a dia.</p>
+
+        <div class="rise" style="animation-delay: .3s; display: flex; flex-wrap: wrap; gap: 14px; margin-top: 6px;">
+          <a href="https://wa.me/5545999916583" target="_blank" rel="noopener" class="btn" style="font-size: 15px; font-weight: 700; padding: 15px 28px; border-radius: 999px; background: var(--accent); color: #FFFFFF; box-shadow: 0 0 0 1px rgba(255,255,255,0.06), 0 12px 28px -10px var(--accent);">Falar no WhatsApp</a>
+          <a href="#projetos" class="btn" style="font-size: 15px; font-weight: 700; padding: 15px 28px; border-radius: 999px; background: rgba(255,255,255,0.06); border: 1px solid var(--dark-line); color: #FFFFFF;">Ver projetos</a>
+        </div>
+
+        <div class="rise mono" style="animation-delay: .4s; display: flex; align-items: center; gap: 8px; margin-top: 4px; font-size: 13px; color: var(--dark-text-2);">
+          <span class="pulse-dot" style="width: 7px; height: 7px; border-radius: 50%; background: var(--accent);"></span>
+          disponível para novos projetos
+        </div>
+      </div>
+
+      <div class="rise" style="animation-delay: .25s; flex: 0.9; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 32px; min-width: 0; position: relative; z-index: 1;">
+        <div class="hero-orbit" style="position: relative; width: 280px; height: 280px; perspective: 700px;">
+          <div style="position: absolute; top: 50%; left: 50%; width: 16px; height: 16px; margin: -8px 0 0 -8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 22px 5px var(--accent), 0 0 64px 20px var(--accent-a44); z-index: 2;"></div>
+
+          <div style="position: absolute; inset: 0; transform: rotateX(72deg) rotateZ(8deg);">
+            <div class="orbit-ring" style="position: relative; width: 100%; height: 100%; border: 1.5px solid var(--accent-a66); border-radius: 50%;">
+              <div style="position: absolute; top: -4px; left: 50%; width: 8px; height: 8px; margin-left: -4px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 10px 3px var(--accent);"></div>
+            </div>
+          </div>
+
+          <div style="position: absolute; inset: 44px; transform: rotateX(68deg) rotateZ(-25deg);">
+            <div class="orbit-ring rev" style="position: relative; width: 100%; height: 100%; border: 1.5px solid rgba(161,92,122,0.5); border-radius: 50%;">
+              <div style="position: absolute; bottom: -4px; left: 22%; width: 7px; height: 7px; border-radius: 50%; background: #A15C7A; box-shadow: 0 0 8px 2px #A15C7A;"></div>
+            </div>
+          </div>
+
+          <div style="position: absolute; inset: -26px; transform: rotateX(75deg) rotateZ(52deg);">
+            <div class="orbit-ring slow" style="position: relative; width: 100%; height: 100%; border: 1px dashed rgba(47,143,107,0.4); border-radius: 50%;">
+              <div style="position: absolute; top: 28%; right: -3px; width: 6px; height: 6px; border-radius: 50%; background: #2F8F6B; box-shadow: 0 0 8px 2px #2F8F6B;"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mono" style="display: flex; align-items: center; gap: 20px; font-size: 12px; color: var(--dark-text-2); flex-wrap: wrap; justify-content: center;">
+          <span style="display: flex; align-items: center; gap: 7px;"><span style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent);"></span>mesa</span>
+          <span style="display: flex; align-items: center; gap: 7px;"><span style="width: 6px; height: 6px; border-radius: 50%; background: #A15C7A;"></span>mayla</span>
+          <span style="display: flex; align-items: center; gap: 7px;"><span style="width: 6px; height: 6px; border-radius: 50%; background: #2F8F6B;"></span>agrovanguard</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SOBRE -->
+  <div id="sobre" class="about" style="width: 100%; box-sizing: border-box; padding: 40px 64px 100px; max-width: 1100px; margin: 0 auto; display: flex; gap: 56px; align-items: center;">
+    <svg viewBox="0 0 400 300" width="240" height="180" style="flex-shrink: 0;" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="200" cy="165" rx="180" ry="125" fill="var(--accent)" opacity="0.07"></ellipse>
+
+      <circle cx="60" cy="55" r="3" fill="var(--accent)" opacity="0.5"></circle>
+      <circle cx="82" cy="38" r="2" fill="var(--accent)" opacity="0.35"></circle>
+      <circle cx="42" cy="82" r="2" fill="var(--accent)" opacity="0.35"></circle>
+
+      <rect x="40" y="230" width="320" height="14" rx="4" fill="#1B1A17"></rect>
+      <rect x="55" y="244" width="10" height="28" fill="#1B1A17"></rect>
+      <rect x="335" y="244" width="10" height="28" fill="#1B1A17"></rect>
+
+      <path d="M60 240 C50 198 56 148 92 140 L97 240 Z" fill="#F6F5F2" stroke="#1B1A17" stroke-width="2"></path>
+
+      <rect x="210" y="118" width="122" height="92" rx="8" fill="#FFFFFF" stroke="#1B1A17" stroke-width="3"></rect>
+      <rect x="210" y="118" width="10" height="92" rx="4" fill="var(--accent)"></rect>
+      <rect x="230" y="138" width="82" height="56" rx="3" fill="#1B1A17" opacity="0.85"></rect>
+      <rect x="261" y="210" width="20" height="16" fill="#1B1A17"></rect>
+      <rect x="246" y="226" width="50" height="8" rx="3" fill="#1B1A17"></rect>
+
+      <path d="M340 230 L360 230 L356 200 L344 200 Z" fill="#E2E0D9"></path>
+      <path d="M350 200 C340 180 335 160 350 140 C365 160 360 180 350 200 Z" fill="var(--accent)"></path>
+      <path d="M350 200 C330 190 320 170 330 150 C350 155 355 180 350 200 Z" fill="var(--accent)" opacity="0.8"></path>
+      <path d="M350 200 C370 190 380 170 370 150 C350 155 345 180 350 200 Z" fill="var(--accent)" opacity="0.8"></path>
+
+      <path d="M75 242 C70 192 90 165 130 165 C165 165 185 196 178 242 Z" fill="#1B1A17"></path>
+
+      <path d="M150 182 C170 172 186 146 180 120 C175 122 165 130 160 146 C150 160 145 176 150 182 Z" fill="#1B1A17"></path>
+      <circle cx="178" cy="118" r="10" fill="#F0C29B"></circle>
+
+      <circle cx="118" cy="128" r="34" fill="#F0C29B"></circle>
+
+      <path d="M85 118 C82 93 100 76 120 76 C142 76 158 93 155 116 C150 103 140 94 130 98 C120 88 105 90 100 102 C92 102 86 108 85 118 Z" fill="#1B1A17"></path>
+
+      <circle cx="106" cy="128" r="10" fill="none" stroke="var(--accent)" stroke-width="3"></circle>
+      <circle cx="132" cy="128" r="10" fill="none" stroke="var(--accent)" stroke-width="3"></circle>
+      <line x1="116" y1="128" x2="122" y2="128" stroke="var(--accent)" stroke-width="3"></line>
+
+      <path d="M110 140 Q119 146 128 140" stroke="#1B1A17" stroke-width="2" fill="none" stroke-linecap="round"></path>
+    </svg>
+    <div class="about-copy" style="flex: 1; display: flex; flex-direction: column; gap: 14px;">
+      <div style="font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-2);">Sobre</div>
+      <p style="margin: 0; font-size: 19px; line-height: 1.7; color: var(--text); max-width: 640px;">Sou desenvolvedor autodidata e construo sistemas que resolvem problemas reais de negócios — do chaveamento de um campeonato de jiu-jitsu à agenda de uma clínica de estética. Gosto de pegar um processo bagunçado (planilha, papel, WhatsApp) e transformar em algo simples de usar no dia a dia.</p>
+    </div>
+  </div>
+
+  <!-- PROJETOS -->
+  <div id="projetos" class="projects" style="width: 100%; box-sizing: border-box; padding: 20px 64px 110px; max-width: 1100px; margin: 0 auto;">
+    <div style="font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-2); margin-bottom: 10px; text-align: center;">Projetos</div>
+    <h2 style="margin: 0 0 48px; font-size: 34px; font-weight: 800; letter-spacing: -0.02em; text-align: center;">Coisas que eu construí</h2>
+
+    <div class="projects-grid" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px;">
+
+      <div class="card project-card" style="background: var(--surface); border: 1px solid var(--line); border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; padding: 20px; gap: 16px;">
+        <div style="height: 110px; border-radius: 12px; background: #F6F5F2; border: 1px solid var(--line); position: relative; padding: 14px; box-sizing: border-box; display: flex; flex-direction: column; gap: 8px;">
+          <div style="display: flex; gap: 6px; align-items: center;">
+            <div style="width: 7px; height: 7px; border-radius: 50%; background: #0F8A6B;"></div>
+            <div style="width: 40px; height: 6px; border-radius: 3px; background: #E2E0D9;"></div>
+          </div>
+          <div style="width: 85%; height: 8px; border-radius: 4px; background: #E9E7E1;"></div>
+          <div style="width: 60%; height: 8px; border-radius: 4px; background: #E9E7E1;"></div>
+          <div style="width: 70%; height: 8px; border-radius: 4px; background: #EEECE6;"></div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 10px; flex: 1;">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <div style="width: 6px; height: 6px; border-radius: 50%; background: #0F8A6B;"></div>
+            <div style="font-size: 17px; font-weight: 700; letter-spacing: -0.01em;">Mesa</div>
+          </div>
+          <p style="margin: 0; font-size: 14px; line-height: 1.6; color: var(--text-2); flex: 1;">Sistema de gestão de campeonatos internos para academias: inscrição de atletas, categorias, chaveamento automático, placar ao vivo e pódio.</p>
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 4px;">
+            <span style="font-size: 11px; font-weight: 600; color: var(--text-2); border: 1px solid var(--line); padding: 5px 10px; border-radius: 999px;">Desenvolvido por mim</span>
+            <a href="https://www.horikawadojo.com.br/site/torneio/cadastro.html?ev=horikawa" target="_blank" rel="noopener" style="font-size: 13px; font-weight: 700; color: var(--text); white-space: nowrap;">Visitar ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card project-card" style="background: var(--surface); border: 1px solid var(--line); border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; padding: 20px; gap: 16px;">
+        <button type="button" class="mockup-trigger" data-open-mockup aria-label="Ampliar mockup do Mayla SaaS" style="position: relative; border-radius: 12px; background: #F6F5F2; border: 1px solid var(--line); box-sizing: border-box; padding: 10px; aspect-ratio: 280 / 150; display: flex; align-items: center; justify-content: center; cursor: pointer; font: inherit;">
+          <svg viewBox="0 0 280 150" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+            <rect x="10" y="6" width="170" height="96" rx="8" fill="#FFFFFF" stroke="#1B1A17" stroke-width="3"></rect>
+            <rect x="10" y="6" width="9" height="96" rx="4" fill="#A15C7A"></rect>
+            <circle cx="40" cy="22" r="4" fill="#A15C7A"></circle>
+            <rect x="49" y="19" width="32" height="6" rx="3" fill="#E2E0D9"></rect>
+            <rect x="28" y="38" width="126" height="7" rx="3" fill="#E9E7E1"></rect>
+            <rect x="28" y="52" width="92" height="7" rx="3" fill="#E9E7E1"></rect>
+            <rect x="28" y="66" width="108" height="7" rx="3" fill="#EEECE6"></rect>
+            <rect x="28" y="80" width="70" height="7" rx="3" fill="#EEECE6"></rect>
+            <rect x="47" y="104" width="96" height="6" rx="3" fill="#1B1A17"></rect>
+            <rect x="182" y="30" width="62" height="112" rx="14" fill="#FFFFFF" stroke="#1B1A17" stroke-width="3"></rect>
+            <rect x="203" y="38" width="20" height="4" rx="2" fill="#1B1A17" opacity="0.3"></rect>
+            <circle cx="196" cy="52" r="3" fill="#A15C7A"></circle>
+            <rect x="203" y="49" width="17" height="5" rx="2.5" fill="#E2E0D9"></rect>
+            <rect x="196" y="64" width="38" height="6" rx="3" fill="#E9E7E1"></rect>
+            <rect x="196" y="76" width="28" height="6" rx="3" fill="#E9E7E1"></rect>
+            <rect x="196" y="88" width="34" height="6" rx="3" fill="#EEECE6"></rect>
+            <rect x="205" y="132" width="20" height="4" rx="2" fill="#1B1A17" opacity="0.25"></rect>
+          </svg>
+          <span class="mono" style="position: absolute; right: 8px; bottom: 8px; font-size: 10px; font-weight: 700; color: var(--text-2); background: rgba(255,255,255,0.9); padding: 4px 8px; border-radius: 999px; border: 1px solid var(--line);">Ampliar ↗</span>
+        </button>
+        <div style="display: flex; flex-direction: column; gap: 10px; flex: 1;">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <div style="width: 6px; height: 6px; border-radius: 50%; background: #A15C7A;"></div>
+            <div style="font-size: 17px; font-weight: 700; letter-spacing: -0.01em;">Mayla SaaS</div>
+          </div>
+          <p style="margin: 0; font-size: 14px; line-height: 1.6; color: var(--text-2); flex: 1;">Painel de gestão para profissionais de estética: agenda, clientes, vendas, serviços e financeiro num só lugar.</p>
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 4px;">
+            <span style="font-size: 11px; font-weight: 600; color: var(--text-2); border: 1px solid var(--line); padding: 5px 10px; border-radius: 999px;">Desenvolvido por mim</span>
+            <span style="font-size: 12px; font-weight: 500; color: var(--text-2); white-space: nowrap;">Uso privado</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card project-card" style="background: var(--surface); border: 1px solid var(--line); border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; padding: 20px; gap: 16px;">
+        <div style="height: 110px; border-radius: 12px; background: #F6F5F2; border: 1px solid var(--line); position: relative; padding: 14px; box-sizing: border-box; display: flex; flex-direction: column; gap: 8px;">
+          <div style="display: flex; gap: 6px; align-items: center;">
+            <div style="width: 7px; height: 7px; border-radius: 50%; background: #A15C7A;"></div>
+            <div style="width: 40px; height: 6px; border-radius: 3px; background: #E2E0D9;"></div>
+          </div>
+          <div style="width: 85%; height: 8px; border-radius: 4px; background: #E9E7E1;"></div>
+          <div style="width: 60%; height: 8px; border-radius: 4px; background: #E9E7E1;"></div>
+          <div style="width: 70%; height: 8px; border-radius: 4px; background: #EEECE6;"></div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 10px; flex: 1;">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <div style="width: 6px; height: 6px; border-radius: 50%; background: #A15C7A;"></div>
+            <div style="font-size: 17px; font-weight: 700; letter-spacing: -0.01em;">Mayla Ferraz</div>
+          </div>
+          <p style="margin: 0; font-size: 14px; line-height: 1.6; color: var(--text-2); flex: 1;">Site institucional e de conversão para o negócio de estética da Mayla.</p>
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 4px;">
+            <span style="font-size: 11px; font-weight: 600; color: var(--text-2); border: 1px solid var(--line); padding: 5px 10px; border-radius: 999px;">Desenvolvido por mim</span>
+            <a href="https://maylaferraz.com.br" target="_blank" rel="noopener" style="font-size: 13px; font-weight: 700; color: var(--text); white-space: nowrap;">Visitar ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card project-card" style="background: var(--surface); border: 1px solid var(--line); border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; padding: 20px; gap: 16px;">
+        <div style="height: 110px; border-radius: 12px; background: #F6F5F2; border: 1px solid var(--line); position: relative; padding: 14px; box-sizing: border-box; display: flex; flex-direction: column; gap: 8px;">
+          <div style="display: flex; gap: 6px; align-items: center;">
+            <div style="width: 7px; height: 7px; border-radius: 50%; background: #B4453F;"></div>
+            <div style="width: 40px; height: 6px; border-radius: 3px; background: #E2E0D9;"></div>
+          </div>
+          <div style="width: 85%; height: 8px; border-radius: 4px; background: #E9E7E1;"></div>
+          <div style="width: 60%; height: 8px; border-radius: 4px; background: #E9E7E1;"></div>
+          <div style="width: 70%; height: 8px; border-radius: 4px; background: #EEECE6;"></div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 10px; flex: 1;">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <div style="width: 6px; height: 6px; border-radius: 50%; background: #B4453F;"></div>
+            <div style="font-size: 17px; font-weight: 700; letter-spacing: -0.01em;">Horikawa Dojo</div>
+          </div>
+          <p style="margin: 0; font-size: 14px; line-height: 1.6; color: var(--text-2); flex: 1;">Site da academia de jiu-jitsu, MMA e wrestling: modalidades, horários, equipe e loja.</p>
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 4px;">
+            <span style="font-size: 11px; font-weight: 600; color: var(--text-2); border: 1px solid var(--line); padding: 5px 10px; border-radius: 999px;">Desenvolvido por mim</span>
+            <a href="https://horikawadojo.com.br" target="_blank" rel="noopener" style="font-size: 13px; font-weight: 700; color: var(--text); white-space: nowrap;">Visitar ↗</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card project-card" style="background: var(--surface); border: 1px solid var(--line); border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; padding: 20px; gap: 16px;">
+        <div style="height: 110px; border-radius: 12px; background: #F6F5F2; border: 1px solid var(--line); position: relative; padding: 14px; box-sizing: border-box; display: flex; flex-direction: column; gap: 8px;">
+          <div style="display: flex; gap: 6px; align-items: center;">
+            <div style="width: 7px; height: 7px; border-radius: 50%; background: #2F8F6B;"></div>
+            <div style="width: 40px; height: 6px; border-radius: 3px; background: #E2E0D9;"></div>
+          </div>
+          <div style="width: 85%; height: 8px; border-radius: 4px; background: #E9E7E1;"></div>
+          <div style="width: 60%; height: 8px; border-radius: 4px; background: #E9E7E1;"></div>
+          <div style="width: 70%; height: 8px; border-radius: 4px; background: #EEECE6;"></div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 10px; flex: 1;">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <div style="width: 6px; height: 6px; border-radius: 50%; background: #2F8F6B;"></div>
+            <div style="font-size: 17px; font-weight: 700; letter-spacing: -0.01em;">AgroVanguard</div>
+          </div>
+          <p style="margin: 0; font-size: 14px; line-height: 1.6; color: var(--text-2); flex: 1;">EduTech de IA aplicada ao agronegócio: mentoria, formação e um assistente de IA especializado para produtores, técnicos e estudantes.</p>
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 4px;">
+            <span style="font-size: 11px; font-weight: 600; color: var(--text-2); border: 1px solid var(--line); padding: 5px 10px; border-radius: 999px;">Desenvolvido por mim</span>
+            <a href="https://agrovanguard.com.br" target="_blank" rel="noopener" style="font-size: 13px; font-weight: 700; color: var(--text); white-space: nowrap;">Visitar ↗</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CONTATO -->
+  <div class="contact grid-bg" style="width: 100%; box-sizing: border-box; padding: 90px 64px; background: var(--dark); margin-top: auto; position: relative; overflow: hidden;">
+    <div class="blob blob-foot" style="position: absolute; bottom: -80px; right: 10%; width: 340px; height: 200px; background: var(--accent); opacity: 0.3; border-radius: 999px;"></div>
+    <div style="max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap; position: relative; z-index: 1;">
+      <div style="display: flex; flex-direction: column; gap: 12px; max-width: 520px;">
+        <div class="mono" style="font-size: 13px; font-weight: 500; color: var(--accent);">// contato</div>
+        <h2 style="margin: 0; font-size: 32px; font-weight: 800; color: #FFFFFF; letter-spacing: -0.02em;">Tem um sistema pra construir?</h2>
+        <p style="margin: 0; font-size: 16px; line-height: 1.6; color: var(--dark-text-2);">Me manda uma mensagem, sem enrolação.</p>
+      </div>
+      <a href="https://wa.me/5545999916583" target="_blank" rel="noopener" class="btn" style="font-size: 15px; font-weight: 700; padding: 17px 30px; border-radius: 999px; background: var(--accent); color: #FFFFFF; white-space: nowrap; box-shadow: 0 12px 28px -10px var(--accent);">Falar no WhatsApp</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer" style="width: 100%; box-sizing: border-box; padding: 22px 64px; background: var(--dark); border-top: 1px solid var(--dark-line);">
+    <div class="mono" style="max-width: 1100px; margin: 0 auto; font-size: 12px; color: var(--dark-text-2);">© 2026 francisco.schmith</div>
+  </div>
+
+  <!-- MOCKUP MODAL -->
+  <div class="mockup-modal-backdrop" id="mockup-modal" hidden>
+    <div class="mockup-modal-panel">
+      <button type="button" class="mockup-modal-close" id="mockup-modal-close" aria-label="Fechar">×</button>
+      <div>
+        <div style="font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-2); margin-bottom: 6px;">Mockup</div>
+        <div style="font-size: 20px; font-weight: 800; letter-spacing: -0.01em;">Mayla SaaS</div>
+      </div>
+      <svg viewBox="0 0 280 150" width="100%" style="height: auto; display: block;" xmlns="http://www.w3.org/2000/svg">
+        <rect x="10" y="6" width="170" height="96" rx="8" fill="#FFFFFF" stroke="#1B1A17" stroke-width="3"></rect>
+        <rect x="10" y="6" width="9" height="96" rx="4" fill="#A15C7A"></rect>
+        <circle cx="40" cy="22" r="4" fill="#A15C7A"></circle>
+        <rect x="49" y="19" width="32" height="6" rx="3" fill="#E2E0D9"></rect>
+        <rect x="28" y="38" width="126" height="7" rx="3" fill="#E9E7E1"></rect>
+        <rect x="28" y="52" width="92" height="7" rx="3" fill="#E9E7E1"></rect>
+        <rect x="28" y="66" width="108" height="7" rx="3" fill="#EEECE6"></rect>
+        <rect x="28" y="80" width="70" height="7" rx="3" fill="#EEECE6"></rect>
+        <rect x="47" y="104" width="96" height="6" rx="3" fill="#1B1A17"></rect>
+        <rect x="182" y="30" width="62" height="112" rx="14" fill="#FFFFFF" stroke="#1B1A17" stroke-width="3"></rect>
+        <rect x="203" y="38" width="20" height="4" rx="2" fill="#1B1A17" opacity="0.3"></rect>
+        <circle cx="196" cy="52" r="3" fill="#A15C7A"></circle>
+        <rect x="203" y="49" width="17" height="5" rx="2.5" fill="#E2E0D9"></rect>
+        <rect x="196" y="64" width="38" height="6" rx="3" fill="#E9E7E1"></rect>
+        <rect x="196" y="76" width="28" height="6" rx="3" fill="#E9E7E1"></rect>
+        <rect x="196" y="88" width="34" height="6" rx="3" fill="#EEECE6"></rect>
+        <rect x="205" y="132" width="20" height="4" rx="2" fill="#1B1A17" opacity="0.25"></rect>
+      </svg>
+      <p style="margin: 0; font-size: 13px; line-height: 1.6; color: var(--text-2);">Ilustração do produto — sistema de uso privado, sem link público.</p>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  (function () {
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (!reduceMotion) {
+      document.querySelectorAll('.project-card').forEach(function (card) {
+        card.addEventListener('mousemove', function (e) {
+          var rect = card.getBoundingClientRect();
+          var x = (e.clientX - rect.left) / rect.width - 0.5;
+          var y = (e.clientY - rect.top) / rect.height - 0.5;
+          var rx = (-y * 8).toFixed(2);
+          var ry = (x * 10).toFixed(2);
+          card.style.transition = 'transform .05s linear';
+          card.style.transform = 'perspective(700px) rotateX(' + rx + 'deg) rotateY(' + ry + 'deg) translateY(-6px)';
+        });
+        card.addEventListener('mouseleave', function () {
+          card.style.transition = 'transform .5s ease';
+          card.style.transform = 'perspective(700px) rotateX(0deg) rotateY(0deg) translateY(0px)';
+        });
+      });
+    }
+
+    var modal = document.getElementById('mockup-modal');
+    var openBtn = document.querySelector('[data-open-mockup]');
+    var closeBtn = document.getElementById('mockup-modal-close');
+    var lastFocused = null;
+
+    function openModal() {
+      lastFocused = document.activeElement;
+      modal.hidden = false;
+      closeBtn.focus();
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      modal.hidden = true;
+      document.body.style.overflow = '';
+      if (lastFocused) lastFocused.focus();
+    }
+
+    if (openBtn) openBtn.addEventListener('click', openModal);
+    closeBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', function (e) {
+      if (e.target === modal) closeModal();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !modal.hidden) closeModal();
+    });
+  })();
+</script>
+</body>
+</html>
