@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>OG image</title>
+<!-- FONTE DE MOCKUP. Renderiza em 1200x630 para virar a imagem de
+     compartilhamento do site (WhatsApp, Instagram, LinkedIn). -->
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    width: 1200px; height: 630px; overflow: hidden;
+    background: #070809; color: #F7F8F8;
+    font-family: Inter, sans-serif;
+    display: flex; align-items: center;
+    position: relative;
+  }
+  .glow {
+    position: absolute; inset: -20%;
+    background: radial-gradient(38% 42% at 76% 32%, rgba(34,181,135,0.38) 0%, transparent 68%);
+  }
+  .grain {
+    position: absolute; inset: 0; opacity: .3;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.42'/%3E%3C/svg%3E");
+  }
+  .wrap { position: relative; display: flex; align-items: center; gap: 56px; padding: 0 72px; width: 100%; }
+  .texto { flex: 1; min-width: 0; }
+  .marca {
+    font-family: Archivo, sans-serif; font-weight: 700; font-size: 21px;
+    letter-spacing: -0.02em; margin-bottom: 30px;
+  }
+  h1 {
+    font-family: Archivo, sans-serif; font-weight: 800; font-size: 57px;
+    line-height: 1.06; letter-spacing: -0.03em; margin-bottom: 26px;
+  }
+  .sub { font-size: 21px; line-height: 1.5; color: #B3BABF; max-width: 30ch; }
+  .selo {
+    display: inline-flex; align-items: center; gap: 10px; margin-top: 34px;
+    border: 1px solid rgba(255,255,255,.16); border-radius: 999px;
+    padding: 9px 18px; font-size: 16px; color: #B3BABF;
+  }
+  .ponto { width: 8px; height: 8px; border-radius: 50%; background: #22B587; }
+  .foto {
+    width: 316px; flex-shrink: 0; border-radius: 22px; overflow: hidden;
+    border: 1px solid rgba(255,255,255,.16);
+    box-shadow: 0 32px 64px -32px rgba(0,0,0,.75);
+    position: relative;
+  }
+  .foto img { width: 100%; display: block; filter: saturate(.92) contrast(1.04); }
+  .foto::after {
+    content: ""; position: absolute; inset: auto 0 0 0; height: 30%;
+    background: linear-gradient(to top, #070809 8%, transparent 100%);
+  }
+</style>
+</head>
+<body>
+  <div class="glow"></div>
+  <div class="grain"></div>
+  <div class="wrap">
+    <div class="texto">
+      <div class="marca">Francisco Schmith</div>
+      <h1>Sites e sistemas que fazem seu negócio vender mais.</h1>
+      <p class="sub">Sites, sistemas de gestão e automações com IA.</p>
+      <div class="selo"><span class="ponto"></span>Cascavel, PR &nbsp;·&nbsp; Atendimento em todo o Brasil</div>
+    </div>
+    <div class="foto">
+      <img src="../assets/img/foto-camiseta-bracos.jpg" alt="">
+    </div>
+  </div>
+</body>
+</html>
