@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Mockup Mesa — Categorias</title>
+<!--
+  FONTE DE MOCKUP, NÃO VAI PARA O AR.
+  Reconstrução da tela real de Categorias do Mesa com dados fictícios.
+  Nenhum nome, idade, peso ou equipe real de atleta aparece aqui.
+  Renderizado em Chrome headless para virar imagem em assets/img/casos/.
+-->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F5F6F8;
+    --card: #FFFFFF;
+    --line: #E4E7EB;
+    --line-soft: #EEF0F3;
+    --ink: #1B1F23;
+    --ink-2: #5C6670;
+    --ink-3: #8A939C;
+    --teal: #10606E;
+    --teal-soft: #E8F1F3;
+    --green: #1A9750;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    width: 1440px; height: 900px; overflow: hidden;
+    background: var(--bg); color: var(--ink);
+    font-family: Inter, -apple-system, sans-serif; font-size: 14px;
+  }
+
+  /* Barra superior */
+  .top {
+    display: flex; align-items: center; justify-content: space-between;
+    background: #fff; border-bottom: 1px solid var(--line);
+    padding: 14px 28px;
+  }
+  .logo { font-size: 19px; font-weight: 700; color: var(--teal); letter-spacing: -0.02em; }
+  .steps { display: flex; align-items: center; gap: 6px; }
+  .step {
+    display: flex; align-items: center; gap: 7px;
+    padding: 7px 13px; border-radius: 8px;
+    font-size: 13.5px; font-weight: 500; color: var(--ink-2);
+  }
+  .step .n {
+    display: grid; place-items: center;
+    width: 19px; height: 19px; border-radius: 50%;
+    background: var(--line); color: var(--ink-2);
+    font-size: 11px; font-weight: 700;
+  }
+  .step.on { background: var(--teal-soft); color: var(--teal); font-weight: 600; }
+  .step.on .n { background: var(--teal); color: #fff; }
+
+  .wrap { padding: 22px 28px; }
+
+  /* Painel Agrupar */
+  .panel {
+    background: #fff; border: 1px solid var(--line); border-radius: 12px;
+    padding: 20px 22px; margin-bottom: 22px;
+  }
+  .panel-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; }
+  .kicker { font-size: 11.5px; font-weight: 700; letter-spacing: 0.09em; color: var(--ink-3); }
+  .actions { display: flex; gap: 9px; }
+  .btn {
+    padding: 9px 15px; border-radius: 8px; font-size: 13.5px; font-weight: 600;
+    border: 1px solid var(--line); background: #fff; color: var(--ink);
+    white-space: nowrap;
+  }
+  .btn-green { background: var(--green); border-color: var(--green); color: #fff; }
+  .btn-ghost { border-color: var(--line); color: var(--ink-2); }
+
+  .counts { margin-top: 14px; font-size: 14px; color: var(--ink-2); }
+  .counts b { color: var(--ink); font-weight: 700; }
+
+  .field { margin-top: 14px; }
+  .field label { display: block; font-size: 11.5px; font-weight: 700; letter-spacing: 0.09em; color: var(--ink-3); margin-bottom: 7px; }
+  .select {
+    display: flex; align-items: center; justify-content: space-between;
+    width: 268px; padding: 9px 12px;
+    border: 1px solid var(--line); border-radius: 8px; background: #fff;
+    font-size: 14px;
+  }
+  .select span:last-child { color: var(--ink-3); font-size: 11px; }
+
+  .hint { margin-top: 13px; padding-left: 11px; border-left: 3px solid var(--line); font-size: 13px; color: var(--ink-2); }
+  .note { margin-top: 9px; font-size: 13px; color: var(--ink-2); }
+
+  /* Grade de categorias */
+  .sec-title { display: flex; align-items: center; gap: 9px; margin-bottom: 13px; }
+  .sec-title h2 { font-size: 15.5px; font-weight: 700; }
+  .badge { background: var(--line); color: var(--ink-2); border-radius: 20px; padding: 1px 9px; font-size: 12px; font-weight: 600; }
+
+  .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .cat { background: var(--card); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+  .cat-head { padding: 14px 16px 12px; border-bottom: 1px solid var(--line-soft); }
+  .cat-head h3 { font-size: 14px; font-weight: 700; letter-spacing: -0.01em; line-height: 1.35; }
+  .cat-head p { margin-top: 4px; font-size: 12.5px; color: var(--ink-3); }
+
+  .ath { display: flex; align-items: flex-start; gap: 10px; padding: 10px 16px; border-bottom: 1px solid var(--line-soft); }
+  .ath .idx { width: 12px; font-size: 12px; color: var(--ink-3); font-weight: 500; padding-top: 2px; }
+  .ath .who { flex: 1; min-width: 0; }
+  .ath .nm { font-size: 13.5px; font-weight: 500; line-height: 1.3; }
+  .ath .meta { margin-top: 2px; font-size: 12px; color: var(--ink-3); }
+  .ath .ctrls { display: flex; gap: 5px; }
+  .ctrl { width: 26px; height: 24px; border: 1px solid var(--line); border-radius: 6px; display: grid; place-items: center; color: var(--ink-3); font-size: 11px; background: #fff; }
+
+  .cat-foot { display: flex; align-items: center; gap: 8px; padding: 12px 16px; }
+  .cat-foot .btn { padding: 7px 12px; font-size: 13px; }
+  .cat-foot .dots { margin-left: auto; color: var(--ink-3); letter-spacing: 1px; }
+
+  /* Barra inferior */
+  .bottom {
+    position: fixed; left: 0; right: 0; bottom: 0;
+    display: flex; align-items: center; justify-content: space-between;
+    background: #fff; border-top: 1px solid var(--line);
+    padding: 12px 28px; font-size: 13.5px; color: var(--ink-2);
+  }
+  .btn-teal { background: var(--teal); border-color: var(--teal); color: #fff; }
+</style>
+</head>
+<body>
+
+  <div class="top">
+    <div class="logo">Mesa</div>
+    <div class="steps">
+      <div class="step"><span class="n">1</span>Evento</div>
+      <div class="step"><span class="n">2</span>Atletas</div>
+      <div class="step on"><span class="n">3</span>Categorias</div>
+      <div class="step"><span class="n">4</span>Chaves</div>
+      <div class="step"><span class="n">5</span>Lutas</div>
+      <div class="step"><span class="n">6</span>Placar</div>
+      <div class="step"><span class="n">7</span>Pódio</div>
+      <div class="step"><span class="n">?</span>Regras</div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="panel">
+      <div class="panel-head">
+        <div style="flex:1">
+          <div class="kicker">AGRUPAR</div>
+          <div class="counts"><b>8</b> grupos com luta &nbsp;·&nbsp; <b>14</b> lutas</div>
+          <div class="field">
+            <label>FORMATO DAS CHAVES</label>
+            <div class="select"><span>Oficial (IBJJF)</span><span>▼</span></div>
+          </div>
+          <div class="hint">Eliminatória direta em todo grupo; grupo de 3 tem segunda chance pra quem perde a 1ª luta (3 lutas).</div>
+          <div class="note">Arraste o nome de um atleta para outro grupo, ou use o ⇄ ao lado dele.</div>
+        </div>
+        <div class="actions">
+          <div class="btn">Montar categorias</div>
+          <div class="btn btn-green">Montar categorias por proximidade</div>
+          <div class="btn btn-ghost">Ver as chaves →</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec-title">
+      <h2>Prontos para lutar</h2><span class="badge">8</span>
+    </div>
+
+    <div class="grid">
+
+      <div class="cat">
+        <div class="cat-head">
+          <h3>Adulto · Masc · Branca · 68 a 70 kg</h3>
+          <p>2 atletas &nbsp;·&nbsp; 5 min</p>
+        </div>
+        <div class="ath"><div class="idx">1</div><div class="who"><div class="nm">Rafael Moura Antunes</div><div class="meta">Horikawa Dojo · 68 kg · 25 anos</div></div><div class="ctrls"><div class="ctrl">⇄</div><div class="ctrl">×</div></div></div>
+        <div class="ath"><div class="idx">2</div><div class="who"><div class="nm">Bruno Teixeira Lima</div><div class="meta">Equipe Alvorada · 70 kg · 27 anos</div></div><div class="ctrls"><div class="ctrl">⇄</div><div class="ctrl">×</div></div></div>
+        <div class="cat-foot"><div class="btn">Refazer chave</div><div class="btn">Ver</div><div class="dots">···</div></div>
+      </div>
+
+      <div class="cat">
+        <div class="cat-head">
+          <h3>Adulto · Masc · Branca · 75 a 82 kg</h3>
+          <p>3 atletas &nbsp;·&nbsp; 5 min</p>
+        </div>
+        <div class="ath"><div class="idx">1</div><div class="who"><div class="nm">Caio Ferreira Nunes</div><div class="meta">Horikawa Dojo · 75 kg · 24 anos</div></div><div class="ctrls"><div class="ctrl">⇄</div><div class="ctrl">×</div></div></div>
+        <div class="ath"><div class="idx">2</div><div class="who"><div class="nm">Leandro Vieira Prado</div><div class="meta">Equipe Alvorada · 79 kg · 26 anos</div></div><div class="ctrls"><div class="ctrl">⇄</div><div class="ctrl">×</div></div></div>
+        <div class="ath"><div class="idx">3</div><div class="who"><div class="nm">Otávio Barbosa Réis</div><div class="meta">Dojo Central · 82 kg · 23 anos</div></div><div class="ctrls"><div class="ctrl">⇄</div><div class="ctrl">×</div></div></div>
+        <div class="cat-foot"><div class="btn">Refazer chave</div><div class="btn">Ver</div><div class="dots">···</div></div>
+      </div>
+
+      <div class="cat">
+        <div class="cat-head">
+          <h3>Adulto · Masc · Branca · 85 a 89 kg</h3>
+          <p>3 atletas &nbsp;·&nbsp; 5 min</p>
+        </div>
+        <div class="ath"><div class="idx">1</div><div class="who"><div class="nm">Vinícius Camargo Rosa</div><div class="meta">Dojo Central · 85 kg · 28 anos</div></div><div class="ctrls"><div class="ctrl">⇄</div><div class="ctrl">×</div></div></div>
+        <div class="ath"><div class="idx">2</div><div class="who"><div class="nm">Thiago Menezes Alonso</div><div class="meta">Equipe Alvorada · 86 kg · 25 anos</div></div><div class="ctrls"><div class="ctrl">⇄</div><div class="ctrl">×</div></div></div>
+        <div class="ath"><div class="idx">3</div><div class="who"><div class="nm">Murilo Sampaio Vidal</div><div class="meta">Horikawa Dojo · 89 kg · 30 anos</div></div><div class="ctrls"><div class="ctrl">⇄</div><div class="ctrl">×</div></div></div>
+        <div class="cat-foot"><div class="btn">Refazer chave</div><div class="btn">Ver</div><div class="dots">···</div></div>
+      </div>
+
+      <div class="cat">
+        <div class="cat-head">
+          <h3>Adulto · Masc · Branca · 92 a 100 kg</h3>
+          <p>2 atletas &nbsp;·&nbsp; 5 min</p>
+        </div>
+        <div class="ath"><div class="idx">1</div><div class="who"><div class="nm">Henrique Dalla Costa</div><div class="meta">Horikawa Dojo · 92 kg · 26 anos</div></div><div class="ctrls"><div class="ctrl">⇄</div><div class="ctrl">×</div></div></div>
+        <div class="ath"><div class="idx">2</div><div class="who"><div class="nm">Gustavo Peixoto Arruda</div><div class="meta">Dojo Central · 100 kg · 29 anos</div></div><div class="ctrls"><div class="ctrl">⇄</div><div class="ctrl">×</div></div></div>
+        <div class="cat-foot"><div class="btn">Refazer chave</div><div class="btn">Ver</div><div class="dots">···</div></div>
+      </div>
+
+      <div class="cat">
+        <div class="cat-head">
+          <h3>13 a 14 anos · Masc · Branca · 38 a 44 kg</h3>
+          <p>3 atletas &nbsp;·&nbsp; 4 min</p>
+        </div>
+        <div class="ath"><div class="idx">1</div><div class="who"><div class="nm">Pedro Lucas Amarante</div><div class="meta">Horikawa Dojo · 38 kg · 13 anos</div></div><div class="ctrls"><div class="ctrl">⇄</div><div class="ctrl">×</div></div></div>
+        <div class="ath"><div class="idx">2</div><div class="who"><div class="nm">Miguel Andrade Rocha</div><div class="meta">Dojo Central · 41 kg · 14 anos</div></div><div class="ctrls"><div class="ctrl">⇄</div><div class="ctrl">×</div></div></div>
+        <div class="ath"><div class="idx">3</div><div class="who"><div class="nm">Davi Queiroz Martel</div><div class="meta">Equipe Alvorada · 44 kg · 13 anos</div></div><div class="ctrls"><div class="ctrl">⇄</div><div class="ctrl">×</div></div></div>
+        <div class="cat-foot"><div class="btn">Refazer chave</div><div class="btn">Ver</div><div class="dots">···</div></div>
+      </div>
+
+      <div class="cat">
+        <div class="cat-head">
+          <h3>Adulto · Fem · Branca · 53 a 58 kg</h3>
+          <p>3 atletas &nbsp;·&nbsp; 5 min</p>
+        </div>
+        <div class="ath"><div class="idx">1</div><div class="who"><div class="nm">Larissa Fontana Braga</div><div class="meta">Horikawa Dojo · 53 kg · 24 anos</div></div><div class="ctrls"><div class="ctrl">⇄</div><div class="ctrl">×</div></div></div>
+        <div class="ath"><div class="idx">2</div><div class="who"><div class="nm">Camila Duarte Ribas</div><div class="meta">Equipe Alvorada · 56 kg · 22 anos</div></div><div class="ctrls"><div class="ctrl">⇄</div><div class="ctrl">×</div></div></div>
+        <div class="ath"><div class="idx">3</div><div class="who"><div class="nm">Bianca Toledo Serra</div><div class="meta">Dojo Central · 58 kg · 27 anos</div></div><div class="ctrls"><div class="ctrl">⇄</div><div class="ctrl">×</div></div></div>
+        <div class="cat-foot"><div class="btn">Refazer chave</div><div class="btn">Ver</div><div class="dots">···</div></div>
+      </div>
+
+      <div class="cat">
+        <div class="cat-head">
+          <h3>Adulto · Masc · Azul · 70 a 76 kg</h3>
+          <p>2 atletas &nbsp;·&nbsp; 6 min</p>
+        </div>
+        <div class="ath"><div class="idx">1</div><div class="who"><div class="nm">Eduardo Salgado Pina</div><div class="meta">Horikawa Dojo · 71 kg · 31 anos</div></div><div class="ctrls"><div class="ctrl">⇄</div><div class="ctrl">×</div></div></div>
+        <div class="ath"><div class="idx">2</div><div class="who"><div class="nm">Fernando Klein Bastos</div><div class="meta">Dojo Central · 76 kg · 29 anos</div></div><div class="ctrls"><div class="ctrl">⇄</div><div class="ctrl">×</div></div></div>
+        <div class="cat-foot"><div class="btn">Refazer chave</div><div class="btn">Ver</div><div class="dots">···</div></div>
+      </div>
+
+      <div class="cat">
+        <div class="cat-head">
+          <h3>Master 1 · Masc · Roxa · 82 a 88 kg</h3>
+          <p>2 atletas &nbsp;·&nbsp; 6 min</p>
+        </div>
+        <div class="ath"><div class="idx">1</div><div class="who"><div class="nm">Anderson Cabral Nóbrega</div><div class="meta">Equipe Alvorada · 82 kg · 34 anos</div></div><div class="ctrls"><div class="ctrl">⇄</div><div class="ctrl">×</div></div></div>
+        <div class="ath"><div class="idx">2</div><div class="who"><div class="nm">Rogério Pastore Vilela</div><div class="meta">Horikawa Dojo · 88 kg · 36 anos</div></div><div class="ctrls"><div class="ctrl">⇄</div><div class="ctrl">×</div></div></div>
+        <div class="cat-foot"><div class="btn">Refazer chave</div><div class="btn">Ver</div><div class="dots">···</div></div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="bottom">
+    <div>32 atletas &nbsp;·&nbsp; 8 categorias &nbsp;·&nbsp; 14 lutas na fila</div>
+    <div style="display:flex;align-items:center;gap:10px">
+      <div class="btn btn-teal">Buscar inscrições</div>
+      <div style="color:var(--ink-3);letter-spacing:1px">···</div>
+    </div>
+  </div>
+
+</body>
+</html>

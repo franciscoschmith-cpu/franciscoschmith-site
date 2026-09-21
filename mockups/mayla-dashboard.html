@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Mockup Painel de Estética — Dashboard</title>
+<!--
+  FONTE DE MOCKUP, NÃO VAI PARA O AR.
+  Reconstrução do dashboard real com dados fictícios.
+  Nenhum nome de cliente, histórico de procedimento ou número financeiro
+  real aparece aqui. Renderizado em Chrome headless para virar imagem.
+-->
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F7F3F0;
+    --card: #FFFFFF;
+    --line: #EAE2DD;
+    --ink: #2A2320;
+    --ink-2: #6B5F59;
+    --ink-3: #9C8F88;
+    --wine: #8F5C6C;
+    --wine-dark: #7A4B59;
+    --butter: #FDF7E8;
+    --butter-line: #F0E4C4;
+    --alert: #C4453F;
+    --wa: #25D366;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    width: 1440px; height: 900px; overflow: hidden;
+    display: flex; background: var(--cream); color: var(--ink);
+    font-family: Inter, -apple-system, sans-serif; font-size: 14px;
+  }
+  .serif { font-family: 'Cormorant Garamond', Georgia, serif; }
+
+  /* Sidebar */
+  .side {
+    width: 232px; flex-shrink: 0; background: #FBF8F6;
+    border-right: 1px solid var(--line); padding: 26px 18px;
+    display: flex; flex-direction: column;
+  }
+  .brand { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 25px; font-weight: 600; letter-spacing: -0.01em; }
+  .brand-sub { margin-top: 3px; font-size: 10.5px; font-weight: 600; letter-spacing: 0.14em; color: var(--ink-3); }
+  .ver { margin-top: 9px; display: flex; align-items: center; gap: 7px; font-size: 11px; color: var(--ink-3); }
+  .tag { background: #E4EFE4; color: #3D7A4A; border-radius: 20px; padding: 2px 8px; font-size: 10px; font-weight: 600; }
+
+  .nav { margin-top: 26px; display: flex; flex-direction: column; gap: 3px; }
+  .nav a {
+    display: flex; align-items: center; gap: 11px;
+    padding: 10px 12px; border-radius: 9px;
+    font-size: 14px; color: var(--ink-2); text-decoration: none;
+  }
+  .nav a.on { background: #F2E7EA; color: var(--wine); font-weight: 600; }
+  .ico { width: 17px; height: 17px; flex-shrink: 0; stroke: currentColor; fill: none; stroke-width: 1.7; }
+  .grp { margin: 20px 0 7px; padding-left: 12px; font-size: 10.5px; font-weight: 700; letter-spacing: 0.13em; color: var(--ink-3); }
+  .hr { height: 1px; background: var(--line); margin: 18px 0; }
+
+  .side-foot { margin-top: auto; }
+  .share {
+    display: flex; align-items: center; justify-content: center; gap: 9px;
+    background: var(--wine); color: #fff; border-radius: 10px;
+    padding: 13px 14px; font-size: 13.5px; font-weight: 600; text-align: center; line-height: 1.3;
+  }
+  .side-foot .lnk { display: flex; align-items: center; gap: 11px; padding: 11px 12px; font-size: 13.5px; color: var(--ink-2); }
+
+  /* Main */
+  .main { flex: 1; padding: 24px 34px; overflow: hidden; }
+  .hi { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 32px; font-weight: 600; letter-spacing: -0.01em; }
+  .date { margin-top: 3px; font-size: 13.5px; color: var(--ink-2); }
+
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px 24px; margin-top: 15px; }
+  .row { display: flex; align-items: center; justify-content: space-between; gap: 18px; }
+  .card h3.serif { font-size: 21px; font-weight: 600; }
+  .stamp { font-size: 10.5px; font-weight: 700; letter-spacing: 0.12em; color: var(--ink-3); }
+  .free { margin-top: 11px; font-size: 14.5px; color: var(--ink-2); }
+  .cta {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--wine); color: #fff; border-radius: 9px;
+    padding: 11px 17px; font-size: 13.5px; font-weight: 600; white-space: nowrap;
+  }
+
+  .sug { background: var(--butter); border-color: var(--butter-line); }
+  .sug .lnk { font-size: 13px; color: var(--wine-dark); font-weight: 600; }
+  .items { margin-top: 15px; display: flex; flex-direction: column; gap: 9px; }
+  .item {
+    display: flex; align-items: center; gap: 13px;
+    background: #fff; border: 1px solid var(--butter-line); border-radius: 10px;
+    padding: 12px 14px;
+  }
+  .ava { width: 26px; height: 32px; border-radius: 5px; background: #33302E; flex-shrink: 0; }
+  .item .who { flex: 1; min-width: 0; }
+  .item .nm { font-size: 14px; font-weight: 500; }
+  .item .late { margin-top: 2px; font-size: 12.5px; color: var(--alert); }
+  .wabtn { width: 31px; height: 31px; border-radius: 50%; background: var(--wa); display: grid; place-items: center; flex-shrink: 0; }
+
+  .days { margin-top: 15px; }
+  .day { display: flex; align-items: center; justify-content: space-between; padding: 9px 2px; border-bottom: 1px solid #F3EDE9; font-size: 14px; }
+  .day:last-child { border-bottom: 0; }
+  .day .st { color: var(--ink-3); font-size: 13.5px; }
+  .day .st.has { color: var(--ink-2); }
+
+  .stats-label { margin-top: 18px; font-size: 10.5px; font-weight: 700; letter-spacing: 0.13em; color: var(--ink-3); }
+  .stats { margin-top: 11px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .stat { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; }
+  .stat .k { font-size: 10.5px; font-weight: 700; letter-spacing: 0.12em; color: var(--ink-3); }
+  .stat .v { margin-top: 8px; font-size: 27px; font-weight: 600; letter-spacing: -0.02em; }
+</style>
+</head>
+<body>
+
+  <aside class="side">
+    <div>
+      <div class="brand">Mayla Ferraz</div>
+      <div class="brand-sub">DASHBOARD</div>
+      <div class="ver">v 03/09 10:18 <span class="tag">atualizado</span></div>
+    </div>
+
+    <nav class="nav">
+      <a class="on"><svg class="ico" viewBox="0 0 24 24"><path d="M3 10l9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></svg>Home</a>
+      <a><svg class="ico" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Agendamentos</a>
+      <a><svg class="ico" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M17 11a3 3 0 1 0 0-6M18 20a6 6 0 0 0-2-4.5"/></svg>Clientes</a>
+      <a><svg class="ico" viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg>Vendas</a>
+
+      <div class="grp">GESTÃO</div>
+      <a><svg class="ico" viewBox="0 0 24 24"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4L8.5 15.5M20 20L8.5 8.5"/></svg>Serviços</a>
+      <a><svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Horários</a>
+      <a><svg class="ico" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="14" rx="2"/><path d="M8 7V5a4 4 0 0 1 8 0v2"/></svg>Produtos</a>
+      <a><svg class="ico" viewBox="0 0 24 24"><path d="M12 2v20"/><path d="M17 6.5c0-2-2.2-3-5-3s-5 1-5 3 2 2.8 5 3.5 5 1.6 5 3.5-2.2 3-5 3-5-1-5-3"/></svg>Financeiro</a>
+
+      <div class="hr"></div>
+      <a><svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-1.8-.3 1.6 1.6 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1A1.6 1.6 0 0 0 9 19.4a1.6 1.6 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.6 1.6 0 0 0 .3-1.8 1.6 1.6 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1A1.6 1.6 0 0 0 4.6 9a1.6 1.6 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.6 1.6 0 0 0 1.8.3H9a1.6 1.6 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.6 1.6 0 0 0 1 1.5 1.6 1.6 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.6 1.6 0 0 0-.3 1.8V9a1.6 1.6 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.6 1.6 0 0 0-1.5 1z"/></svg>Configurações</a>
+    </nav>
+
+    <div class="side-foot">
+      <div class="share"><svg class="ico" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg>Compartilhar<br>agendamento</div>
+      <div class="lnk">Ver site</div>
+      <div class="lnk"><svg class="ico" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5M21 12H9"/></svg>Sair</div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="hi">Olá, Mayla 👋</div>
+    <div class="date">Segunda-feira, 21 de setembro de 2026</div>
+
+    <div class="card">
+      <div class="row">
+        <div>
+          <h3 class="serif">Hoje</h3>
+          <div class="free">Sua agenda está livre hoje 🌿</div>
+        </div>
+        <div style="text-align:right">
+          <div class="stamp">21 DE SETEMBRO</div>
+          <div class="cta" style="margin-top:12px"><svg class="ico" viewBox="0 0 24 24" style="stroke:#fff"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Criar agendamento</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card sug">
+      <div class="row">
+        <h3 class="serif">Ações sugeridas pra hoje</h3>
+        <div class="lnk">Ver todas no Vendas →</div>
+      </div>
+      <div class="items">
+        <div class="item"><div class="ava"></div><div class="who"><div class="nm">Ana Beatriz Correia</div><div class="late">retorno atrasado 2 dias (Limpeza de Pele Essencial)</div></div><div class="wabtn"><svg width="15" height="15" viewBox="0 0 24 24" fill="#fff"><path d="M12 2a10 10 0 0 0-8.7 15l-1.2 4.3 4.4-1.2A10 10 0 1 0 12 2zm0 2a8 8 0 1 1-4.1 14.9l-.3-.2-2.2.6.6-2.2-.2-.3A8 8 0 0 1 12 4z"/></svg></div></div>
+        <div class="item"><div class="ava"></div><div class="who"><div class="nm">Carla Menezes</div><div class="late">retorno atrasado 2 dias (Limpeza de pele para microagulhamento)</div></div><div class="wabtn"><svg width="15" height="15" viewBox="0 0 24 24" fill="#fff"><path d="M12 2a10 10 0 0 0-8.7 15l-1.2 4.3 4.4-1.2A10 10 0 1 0 12 2zm0 2a8 8 0 1 1-4.1 14.9l-.3-.2-2.2.6.6-2.2-.2-.3A8 8 0 0 1 12 4z"/></svg></div></div>
+        <div class="item"><div class="ava"></div><div class="who"><div class="nm">Juliana Prado</div><div class="late">retorno atrasado 2 dias (Limpeza de Pele Premium + LEDterapia)</div></div><div class="wabtn"><svg width="15" height="15" viewBox="0 0 24 24" fill="#fff"><path d="M12 2a10 10 0 0 0-8.7 15l-1.2 4.3 4.4-1.2A10 10 0 1 0 12 2zm0 2a8 8 0 1 1-4.1 14.9l-.3-.2-2.2.6.6-2.2-.2-.3A8 8 0 0 1 12 4z"/></svg></div></div>
+        <div class="item"><div class="ava"></div><div class="who"><div class="nm">Renata Schuster</div><div class="late">retorno atrasado 3 dias (Limpeza de Pele Premium + LEDterapia)</div></div><div class="wabtn"><svg width="15" height="15" viewBox="0 0 24 24" fill="#fff"><path d="M12 2a10 10 0 0 0-8.7 15l-1.2 4.3 4.4-1.2A10 10 0 1 0 12 2zm0 2a8 8 0 1 1-4.1 14.9l-.3-.2-2.2.6.6-2.2-.2-.3A8 8 0 0 1 12 4z"/></svg></div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3 class="serif">Próximos 7 dias</h3>
+      <div class="days">
+        <div class="day"><span>Terça 22 de set</span><span class="st">Livre</span></div>
+        <div class="day"><span>Quarta 23 de set</span><span class="st has">1 atendimento &nbsp;›</span></div>
+        <div class="day"><span>Quinta 24 de set</span><span class="st">Livre</span></div>
+      </div>
+    </div>
+
+    <div class="stats-label">ÚLTIMOS 30 DIAS</div>
+    <div class="stats">
+      <div class="stat"><div class="k">ATENDIMENTOS</div><div class="v">18</div></div>
+      <div class="stat"><div class="k">FATURAMENTO</div><div class="v">R$ 2.150,00</div></div>
+      <div class="stat"><div class="k">TICKET MÉDIO</div><div class="v">R$ 119,44</div></div>
+    </div>
+  </main>
+
+</body>
+</html>
