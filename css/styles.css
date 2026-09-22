@@ -766,11 +766,19 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .depoimento blockquote p { font-size: var(--step-1); line-height: 1.55; max-width: none; }
 .depoimento__quem { display: flex; align-items: center; gap: var(--space-3); }
 .depoimento__foto {
-  width: 44px; height: 44px; flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 48px; height: 48px; flex-shrink: 0;
   border-radius: 50%;
+  overflow: hidden;
   background: var(--ink-600);
   border: 1px solid var(--hairline-dark-strong);
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--brand-300);
 }
+.depoimento__foto img { width: 100%; height: 100%; object-fit: cover; }
 .depoimento__quem strong { display: block; font-weight: 600; }
 .depoimento__negocio { font-size: var(--step--1); color: var(--on-dark-muted); }
 
@@ -813,7 +821,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .sobre {
   display: grid;
   grid-template-columns: 0.72fr 1.28fr;
-  align-items: center;
+  align-items: start;            /* texto começa no topo, sem folga morta */
   gap: clamp(2rem, 1rem + 4vw, 4.5rem);
 }
 .sobre__foto { display: flex; justify-content: center; }
@@ -826,28 +834,30 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 }
 .portrait--light img { object-position: 50% 12%; }
 
-.sobre__texto h2 { margin: var(--space-3) 0 var(--space-5); max-width: 18ch; }
+.sobre__texto h2 { margin: var(--space-2) 0 var(--space-5); max-width: 18ch; }
 .sobre__bio { font-size: var(--step-1); line-height: 1.7; color: var(--on-light-muted); max-width: 58ch; }
 
+/* Grade em vez de flex: com 4 selos, nunca sobra um sozinho na
+   segunda linha. 2 por 2 por padrão, os 4 em linha no desktop largo. */
 .credenciais {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-2);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-3);
   margin-top: var(--space-6);
 }
-
-/* ---------- Projeto próprio ---------- */
-/* Bloco menor de propósito: não compete com os casos de cliente. */
-.projeto-proprio { padding-block: var(--space-7); }
-.proprio {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: var(--space-5);
-  padding: var(--space-6);
+@media (min-width: 1080px) {
+  .credenciais { grid-template-columns: repeat(4, auto); justify-content: start; }
 }
-.proprio h3 { margin: var(--space-2) 0; }
+.credenciais .chip {
+  justify-content: center;
+  font-size: var(--step-0);
+  font-weight: 600;
+  padding: 0.6rem 1rem;
+  color: var(--on-light);
+  border-color: rgba(16, 19, 21, 0.28);
+  white-space: nowrap;
+}
+
 
 /* ---------- FAQ ---------- */
 .faq { margin-top: var(--space-7); max-width: 780px; }
@@ -891,7 +901,6 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   .sobre__foto { order: 2; }
   .sobre__texto { order: 1; }
   .portrait--light { max-width: 280px; }
-  .proprio { flex-direction: column; align-items: flex-start; }
 }
 
 @media (max-width: 560px) {

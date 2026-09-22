@@ -419,38 +419,22 @@
   </section>
 
   <!-- ===================== DEPOIMENTOS =====================
-       SEÇÃO PRONTA, MAS OCULTA.
-       Para publicar: apague a palavra hidden na linha abaixo
-       e troque os [PREENCHER] pelos depoimentos reais.
+       A seção aparece sozinha quando houver depoimento preenchido
+       em js/content.js. Enquanto estiver vazio, ela nem entra na página.
   ======================================================== -->
   <section class="section section--dark2 grain" id="depoimentos" hidden>
     <div class="shell">
-      <p class="eyebrow reveal">Depoimentos</p>
-      <h2 class="reveal">O que os clientes dizem.</h2>
+      <p class="eyebrow">Depoimentos</p>
+      <h2>Quem já trabalhou comigo.</h2>
 
-      <div class="depoimentos">
-        <figure class="card depoimento reveal">
-          <blockquote>
-            <p><span class="todo">[PREENCHER: depoimento da Mayla]</span></p>
-          </blockquote>
+      <div class="depoimentos" data-depoimentos>
+        <figure class="card depoimento" data-molde hidden>
+          <blockquote><p data-dep-texto></p></blockquote>
           <figcaption class="depoimento__quem">
-            <span class="depoimento__foto" aria-hidden="true"></span>
+            <span class="depoimento__foto" data-dep-foto aria-hidden="true"></span>
             <span>
-              <strong>Mayla Ferraz</strong>
-              <span class="depoimento__negocio">Mayla Ferraz Estética</span>
-            </span>
-          </figcaption>
-        </figure>
-
-        <figure class="card depoimento reveal" data-delay="1">
-          <blockquote>
-            <p><span class="todo">[PREENCHER: depoimento da Horikawa Dojo]</span></p>
-          </blockquote>
-          <figcaption class="depoimento__quem">
-            <span class="depoimento__foto" aria-hidden="true"></span>
-            <span>
-              <strong><span class="todo">[PREENCHER: nome]</span></strong>
-              <span class="depoimento__negocio">Horikawa Dojo</span>
+              <strong data-dep-nome></strong>
+              <span class="depoimento__negocio" data-dep-negocio></span>
             </span>
           </figcaption>
         </figure>
@@ -510,9 +494,9 @@
         <p class="eyebrow">Sobre</p>
         <h2>Entendo o negócio antes de escrever código.</h2>
         <p class="sobre__bio">
-          Sou Francisco Schmith, de Cascavel. Minha formação é em Engenharia Agrícola pela Unioeste
-          e estou cursando MBA em Agronegócio. Fui diretor de Unidade Didático Produtiva em colégio
-          agrícola, consultor da UNESCO e trabalhei com marketing e tráfego pago. Essa trajetória me
+          Sou Francisco Schmith, de Cascavel. Minha formação é em <strong>Engenharia Agrícola pela Unioeste</strong>
+          e estou cursando <strong>MBA em Agronegócio</strong>. Fui diretor de Unidade Didático Produtiva em colégio
+          agrícola, <strong>consultor da UNESCO</strong> e trabalhei com marketing e tráfego pago. Essa trajetória me
           ensinou a olhar primeiro para o negócio e só depois para a tecnologia. É assim que eu
           trabalho: entendo o problema, construo a solução e acompanho até funcionar.
         </p>
@@ -523,22 +507,6 @@
           <li class="chip">Ex consultor UNESCO</li>
           <li class="chip">Marketing digital</li>
         </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== PROJETO PRÓPRIO ===================== -->
-  <section class="section section--dark projeto-proprio" id="agrovanguard">
-    <div class="shell">
-      <div class="card proprio reveal">
-        <div>
-          <p class="eyebrow">Projeto próprio</p>
-          <h3>AgroVanguard</h3>
-          <p class="muted">Meu projeto de educação em IA aplicada ao agronegócio.</p>
-        </div>
-        <a class="btn btn--ghost" href="https://agrovanguard.com.br" target="_blank" rel="noopener">
-          Conhecer <span aria-hidden="true">↗</span>
-        </a>
       </div>
     </div>
   </section>
