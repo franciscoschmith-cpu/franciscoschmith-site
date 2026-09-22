@@ -134,11 +134,11 @@
           <a class="btn btn--ghost" href="#casos">Ver casos</a>
         </div>
 
-        <p class="hero__proof reveal" data-delay="3">
-          <span class="todo">[PREENCHER: nº de projetos entregues]</span> projetos entregues
-          <span class="hero__sep" aria-hidden="true">·</span> Cascavel, PR
-          <span class="hero__sep" aria-hidden="true">·</span> Atendimento em todo o Brasil
-        </p>
+        <ul class="hero__proof reveal" data-delay="3">
+          <li data-c-block><span data-c="projetosEntregues"></span> projetos entregues</li>
+          <li>Cascavel, PR</li>
+          <li>Atendimento em todo o Brasil</li>
+        </ul>
       </div>
 
       <div class="hero__portrait reveal" data-delay="1">
@@ -236,12 +236,16 @@
           <h3>Mesa, sistema de campeonatos</h3>
 
           <dl class="caso__specs">
-            <dt>Problema</dt>
-            <dd><span class="todo">[PREENCHER: como o chaveamento era feito antes]</span></dd>
+            <div data-c-block>
+              <dt>Problema</dt>
+              <dd data-c="mesaProblema"></dd>
+            </div>
             <dt>Solução</dt>
             <dd>Inscrição de atletas, montagem de categorias, chaveamento automático, placar ao vivo e pódio, em um fluxo único do cadastro até o resultado.</dd>
-            <dt>Resultado</dt>
-            <dd><span class="todo">[PREENCHER: nº de atletas ou eventos, tempo economizado]</span></dd>
+            <div data-c-block>
+              <dt>Resultado</dt>
+              <dd data-c="mesaResultado"></dd>
+            </div>
           </dl>
 
           <a class="link-forte" href="https://www.horikawadojo.com.br/site/torneio/cadastro.html?ev=horikawa" target="_blank" rel="noopener">
@@ -297,8 +301,10 @@
             <dl class="caso__specs">
               <dt>Solução</dt>
               <dd>Site institucional focado em conversão, com agendamento pelo WhatsApp.</dd>
-              <dt>Resultado</dt>
-              <dd><span class="todo">[PREENCHER: resultado do site da Mayla]</span></dd>
+              <div data-c-block>
+                <dt>Resultado</dt>
+                <dd data-c="maylaSiteResultado"></dd>
+              </div>
             </dl>
             <a class="link-forte" href="https://maylaferraz.com.br" target="_blank" rel="noopener">
               Visitar o site <span aria-hidden="true">↗</span>
@@ -326,8 +332,10 @@
             <dl class="caso__specs">
               <dt>Solução</dt>
               <dd>Agenda, clientes, vendas, serviços e financeiro em um só lugar, com sugestão de quem está com retorno atrasado.</dd>
-              <dt>Resultado</dt>
-              <dd><span class="todo">[PREENCHER: resultado do painel]</span></dd>
+              <div data-c-block>
+                <dt>Resultado</dt>
+                <dd data-c="maylaPainelResultado"></dd>
+              </div>
             </dl>
             <p class="caso__privado">Sistema interno, sem link público.</p>
           </div>
@@ -340,8 +348,10 @@
             <dl class="caso__specs">
               <dt>Solução</dt>
               <dd>Modalidades, horários, equipe e loja, com o WhatsApp sempre à mão para quem quer fazer a primeira aula.</dd>
-              <dt>Resultado</dt>
-              <dd><span class="todo">[PREENCHER: resultado do site da Horikawa]</span></dd>
+              <div data-c-block>
+                <dt>Resultado</dt>
+                <dd data-c="horikawaSiteResultado"></dd>
+              </div>
             </dl>
             <a class="link-forte" href="https://horikawadojo.com.br" target="_blank" rel="noopener">
               Visitar o site <span aria-hidden="true">↗</span>
@@ -444,8 +454,8 @@
         </li>
       </ol>
 
-      <p class="etapas__prazo reveal">
-        Prazo médio: <span class="todo">[PREENCHER: prazo médio de entrega]</span>
+      <p class="etapas__prazo reveal" data-c-block>
+        Prazo médio: <span data-c="prazoMedio"></span>
       </p>
     </div>
   </section>
@@ -511,14 +521,14 @@
           <summary>Quanto custa um site?</summary>
           <div class="faq__resposta">
             <p>Depende do escopo. Na primeira conversa eu entendo sua necessidade e envio uma proposta com valor fechado.</p>
-            <p class="faq__nota"><span class="todo">[PREENCHER: faixa de preço, se você decidir mostrar]</span></p>
+            <p class="faq__preco" data-c-block>Sites a partir de R$ <span data-c="precoAPartirDe"></span></p>
           </div>
         </details>
 
         <details class="faq__item">
           <summary>Quanto tempo leva?</summary>
           <div class="faq__resposta">
-            <p><span class="todo">[PREENCHER: prazo por tipo de projeto]</span></p>
+            <p data-c="faqPrazo"></p>
           </div>
         </details>
 
@@ -532,14 +542,14 @@
         <details class="faq__item">
           <summary>Vou conseguir atualizar o site sozinho?</summary>
           <div class="faq__resposta">
-            <p><span class="todo">[PREENCHER: o cliente consegue editar? tem painel? precisa te chamar?]</span></p>
+            <p data-c="faqAtualizarSozinho"></p>
           </div>
         </details>
 
         <details class="faq__item">
           <summary>Tem suporte depois da entrega?</summary>
           <div class="faq__resposta">
-            <p><span class="todo">[PREENCHER: como funciona o suporte, por quanto tempo, se é cobrado]</span></p>
+            <p data-c="faqSuporte"></p>
           </div>
         </details>
       </div>
@@ -583,6 +593,7 @@
   </div>
 </footer>
 
+<script src="js/content.js" defer></script>
 <script src="js/main.js" defer></script>
 </body>
 </html>

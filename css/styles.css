@@ -474,12 +474,18 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: var(--space-2);
-  font-size: var(--step--1);
-  color: var(--on-dark-muted);
+  gap: 0;
+  font-size: var(--step-0);
+  color: var(--on-dark);        /* 17,4:1, em vez do cinza anterior */
   max-width: none;
 }
-.hero__sep { color: var(--brand-400); }
+/* O separador é gerado, nunca escrito. Se um item some, o ponto some junto
+   e nunca sobra um "·" solto no fim da linha. */
+.hero__proof li + li::before {
+  content: "·";
+  margin-inline: var(--space-3);
+  color: var(--brand-400);
+}
 
 /* Retrato emoldurado. Sem recorte: a moldura é proposital,
    com o brilho da marca atrás e a base dissolvendo no fundo. */

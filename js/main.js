@@ -9,6 +9,73 @@
 
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  /* ---------- Conteúdo pendente ----------
+     Lê js/content.js. Campo preenchido aparece; campo vazio faz o bloco
+     inteiro sumir, sem deixar rótulo órfão nem espaço morto. */
+  var C = window.CONTEUDO || {};
+
+  function valor(chave) {
+    var v = C[chave];
+    return (typeof v === 'string' && v.trim()) ? v.trim() : '';
+  }
+
+  document.querySelectorAll('[data-c]').forEach(function (el) {
+    var v = valor(el.getAttribute('data-c'));
+    if (v) {
+      el.textContent = v;
+      el.hidden = false;
+      return;
+    }
+    // Vazio: remove o bloco marcado, ou o próprio elemento se não houver bloco.
+    var bloco = el.closest('[data-c-block]');
+    (bloco || el).remove();
+  });
+
+  /* Depoimentos: a seção só existe se houver pelo menos um texto. */
+  (function () {
+    var secao = document.getElementById('depoimentos');
+    if (!secao) return;
+
+    var lista = Array.isArray(C.depoimentos) ? C.depoimentos : [];
+    var validos = lista.filter(function (d) {
+      return d && String(d.texto || '').trim() && String(d.nome || '').trim();
+    });
+
+    if (!validos.length) { secao.remove(); return; }
+
+    var grade = secao.querySelector('[data-depoimentos]');
+    var molde = grade.querySelector('[data-molde]');
+
+    validos.forEach(function (d) {
+      var item = molde.cloneNode(true);
+      item.removeAttribute('data-molde');
+      item.hidden = false;
+
+      item.querySelector('[data-dep-texto]').textContent = String(d.texto).trim();
+      item.querySelector('[data-dep-nome]').textContent = String(d.nome).trim();
+
+      var neg = item.querySelector('[data-dep-negocio]');
+      var negocio = String(d.negocio || '').trim();
+      if (negocio) neg.textContent = negocio; else neg.remove();
+
+      var foto = item.querySelector('[data-dep-foto]');
+      if (String(d.foto || '').trim()) {
+        var img = document.createElement('img');
+        img.src = String(d.foto).trim();
+        img.alt = '';
+        img.loading = 'lazy';
+        foto.appendChild(img);
+      } else {
+        foto.textContent = String(d.nome).trim().charAt(0).toUpperCase();
+      }
+
+      grade.appendChild(item);
+    });
+
+    molde.remove();
+    secao.hidden = false;
+  })();
+
   /* ---------- Header ganha fundo ao rolar ---------- */
   var header = document.getElementById('site-header');
   if (header) {
