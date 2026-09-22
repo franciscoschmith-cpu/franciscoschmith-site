@@ -515,7 +515,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 50% 18%;     /* rosto no terço superior */
+  object-position: 50% 15%;     /* rosto no terço superior quando a foto for mais alta que 4:5 */
   filter: saturate(0.95) contrast(1.03);
 }
 
