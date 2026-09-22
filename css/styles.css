@@ -855,7 +855,8 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   padding: 0.6rem 1rem;
   color: var(--on-light);
   border-color: rgba(16, 19, 21, 0.28);
-  white-space: nowrap;
+  min-width: 0;          /* deixa o selo encolher em vez de empurrar a página */
+  text-align: center;
 }
 
 
