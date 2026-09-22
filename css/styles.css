@@ -472,7 +472,8 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 
 .hero__proof {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  white-space: nowrap;
   align-items: center;
   gap: 0;
   font-size: var(--step-0);
@@ -491,30 +492,31 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
    com o brilho da marca atrás e a base dissolvendo no fundo. */
 .hero__portrait { display: flex; justify-content: center; }
 
+/* Retrato do hero.
+   Fica em 4:5 e recorta o excesso, então funciona com qualquer foto
+   vertical sem esticar. object-position sobe o enquadramento para
+   priorizar o rosto. Moldura clara e sombra separam a foto do fundo
+   escuro mesmo quando a imagem tiver fundo claro. */
 .portrait {
   position: relative;
   margin: 0;
   width: 100%;
-  max-width: 380px;
+  max-width: 400px;
+  aspect-ratio: 4 / 5;
   border-radius: var(--r-lg);
   overflow: hidden;
-  border: 1px solid var(--hairline-dark-strong);
-  box-shadow: var(--shadow-lg);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  box-shadow: 0 40px 80px -36px rgba(0, 0, 0, 0.9),
+              0 0 0 1px rgba(255, 255, 255, 0.05);
   isolation: isolate;
+  background: var(--ink-700);
 }
 .portrait img {
   width: 100%;
-  height: auto;
-  filter: saturate(0.92) contrast(1.04);
-}
-/* Dissolve a base da foto no preto da seção */
-.portrait::after {
-  content: "";
-  position: absolute;
-  inset: auto 0 0 0;
-  height: 32%;
-  background: linear-gradient(to top, var(--ink-900) 8%, transparent 100%);
-  pointer-events: none;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 18%;     /* rosto no terço superior */
+  filter: saturate(0.95) contrast(1.03);
 }
 
 /* ---------- Responsivo ---------- */
@@ -528,6 +530,12 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   .hero__portrait { order: 2; }
   .hero__copy h1 { max-width: 20ch; }
   .portrait { max-width: 320px; }
+}
+
+@media (max-width: 720px) {
+  /* No celular a linha de prova pode quebrar, aí volta a permitir */
+  .hero__proof { flex-wrap: wrap; white-space: normal; }
+  .hero__proof li + li::before { margin-inline: var(--space-2); }
 }
 
 @media (max-width: 560px) {
@@ -830,10 +838,12 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .sobre__foto { display: flex; justify-content: center; }
 .portrait--light {
   max-width: 330px;
+  aspect-ratio: 3 / 4;
   border-color: var(--hairline-light);
   box-shadow: var(--shadow-md);
+  background: var(--paper-100);
 }
-.portrait--light::after { display: none; }
+.portrait--light img { object-position: 50% 12%; }
 
 .sobre__texto h2 { margin: var(--space-3) 0 var(--space-5); max-width: 18ch; }
 .sobre__bio { font-size: var(--step-1); line-height: 1.7; color: var(--on-light-muted); max-width: 58ch; }
