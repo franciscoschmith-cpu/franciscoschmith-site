@@ -1,7 +1,7 @@
 import { ArrowDown, ArrowRight, ArrowUpRight, Check, CircleDot, Menu, Plus } from "lucide-react";
 import { useState } from "react";
 
-const portraitSrc = "/manus-storage/francisco-portrait_33abe1d1.jpg";
+const portraitSrc = "/francisco-portrait.jpg";
 const deskSrc = "/manus-storage/process-desk_14ebfaee.jpg";
 
 const services = [
