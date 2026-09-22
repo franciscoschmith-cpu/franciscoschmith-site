@@ -249,159 +249,172 @@
       <p class="eyebrow reveal">Casos</p>
       <h2 class="reveal">Projetos reais, problemas reais.</h2>
 
-      <!-- Caso em destaque -->
-      <article class="card card--light caso caso--destaque reveal">
-        <div class="caso__texto">
-          <p class="caso__cliente">Horikawa Dojo</p>
-          <h3>Mesa, sistema de campeonatos</h3>
+      <!-- Cliente 1 -->
+      <article class="cliente reveal">
+        <header class="cliente__cab">
+          <h3>Horikawa Dojo: site e sistema de campeonatos</h3>
+          <p class="cliente__intro">Começou com o site da academia e evoluiu para um sistema próprio de gestão de torneios.</p>
+        </header>
 
-          <dl class="caso__specs">
-            <div data-c-block>
-              <dt>Problema</dt>
-              <dd data-c="mesaProblema"></dd>
-            </div>
-            <dt>Solução</dt>
-            <dd>Inscrição de atletas, montagem de categorias, chaveamento automático, placar ao vivo e pódio, em um fluxo único do cadastro até o resultado.</dd>
-            <div data-c-block>
-              <dt>Resultado</dt>
-              <dd data-c="mesaResultado"></dd>
-            </div>
-          </dl>
+        <div class="entregaveis">
 
-          <a class="link-forte" href="https://www.horikawadojo.com.br/site/torneio/cadastro.html?ev=horikawa" target="_blank" rel="noopener">
-            Ver a inscrição no ar
-            <span aria-hidden="true">↗</span>
-          </a>
-        </div>
-
-        <div class="caso__visual">
-          <div class="device device--laptop">
-            <div class="device__screen">
-              <picture>
-                <source srcset="assets/img/casos/mesa-app.avif" type="image/avif">
-                <img src="assets/img/casos/mesa-app.jpg" width="1600" height="1000" loading="lazy" decoding="async"
-                     alt="Tela de categorias do Mesa, com os grupos montados e o fluxo numerado do evento.">
-              </picture>
+          <div class="card card--light entregavel">
+            <div class="entregavel__visual">
+              <div class="device device--laptop">
+                <div class="device__screen">
+                  <picture>
+                    <source srcset="assets/img/casos/horikawa-desktop.avif" type="image/avif">
+                    <img src="assets/img/casos/horikawa-desktop.jpg" width="1600" height="1000" loading="lazy" decoding="async"
+                         alt="Página inicial do site do Horikawa Dojo.">
+                  </picture>
+                </div>
+                <div class="device__base" aria-hidden="true"></div>
+              </div>
+              <div class="device device--phone device--overlap">
+                <div class="device__screen">
+                  <picture>
+                    <source srcset="assets/img/casos/horikawa-mobile.avif" type="image/avif">
+                    <img src="assets/img/casos/horikawa-mobile.jpg" width="780" height="1688" loading="lazy" decoding="async"
+                         alt="O mesmo site do Horikawa Dojo visto no celular.">
+                  </picture>
+                </div>
+              </div>
             </div>
-            <div class="device__base" aria-hidden="true"></div>
+
+            <div class="entregavel__texto">
+              <p class="entregavel__rotulo">Site da academia</p>
+              <dl class="caso__specs">
+                <dt>Solução</dt>
+                <dd>Modalidades, horários, equipe e loja, com o WhatsApp sempre à mão para quem quer fazer a primeira aula.</dd>
+                <div data-c-block>
+                  <dt>Resultado</dt>
+                  <dd data-c="horikawaSiteResultado"></dd>
+                </div>
+              </dl>
+              <a class="link-forte" href="https://horikawadojo.com.br" target="_blank" rel="noopener">
+                Visitar o site <span aria-hidden="true">↗</span>
+              </a>
+            </div>
           </div>
-          <p class="caso__nota">Telas reconstruídas com dados fictícios para preservar a privacidade dos clientes.</p>
+
+          <div class="card card--light entregavel">
+            <div class="entregavel__visual">
+              <div class="device device--laptop">
+                <div class="device__screen">
+                  <picture>
+                    <source srcset="assets/img/casos/mesa-chaves.avif" type="image/avif">
+                    <img src="assets/img/casos/mesa-chaves.jpg" width="1600" height="1000" loading="lazy" decoding="async"
+                         alt="Tela de chaveamento do Mesa, com as quartas, semifinais, final e o pódio.">
+                  </picture>
+                </div>
+                <div class="device__base" aria-hidden="true"></div>
+              </div>
+            </div>
+
+            <div class="entregavel__texto">
+              <p class="entregavel__rotulo">Mesa, sistema de campeonatos</p>
+              <dl class="caso__specs">
+                <div data-c-block>
+                  <dt>Problema</dt>
+                  <dd data-c="mesaProblema"></dd>
+                </div>
+                <dt>Solução</dt>
+                <dd>Inscrição de atletas, montagem de categorias, chaveamento automático, placar ao vivo e pódio, em um fluxo único do cadastro até o resultado.</dd>
+                <div data-c-block>
+                  <dt>Resultado</dt>
+                  <dd data-c="mesaResultado"></dd>
+                </div>
+              </dl>
+              <a class="link-forte" href="https://www.horikawadojo.com.br/site/torneio/cadastro.html?ev=horikawa" target="_blank" rel="noopener">
+                Ver a inscrição no ar <span aria-hidden="true">↗</span>
+              </a>
+              <p class="caso__nota">Telas reconstruídas com dados fictícios para preservar a privacidade dos clientes.</p>
+            </div>
+          </div>
+
         </div>
       </article>
 
-      <!-- Casos secundários -->
-      <div class="casos-grid">
+      <!-- Cliente 2 -->
+      <article class="cliente reveal">
+        <header class="cliente__cab">
+          <h3>Mayla Ferraz: site e painel de gestão</h3>
+          <p class="cliente__intro">Um site para atrair clientes e um painel interno para organizar agenda, vendas e financeiro.</p>
+        </header>
 
-        <article class="card card--light caso reveal">
-          <div class="caso__visual">
-            <div class="device device--laptop">
-              <div class="device__screen">
-                <picture>
-                  <source srcset="assets/img/casos/mayla-desktop.avif" type="image/avif">
-                  <img src="assets/img/casos/mayla-desktop.jpg" width="1600" height="1000" loading="lazy" decoding="async"
-                       alt="Página inicial do site da Mayla Ferraz Estética.">
-                </picture>
+        <div class="entregaveis">
+
+          <div class="card card--light entregavel">
+            <div class="entregavel__visual">
+              <div class="device device--laptop">
+                <div class="device__screen">
+                  <picture>
+                    <source srcset="assets/img/casos/mayla-desktop.avif" type="image/avif">
+                    <img src="assets/img/casos/mayla-desktop.jpg" width="1600" height="1000" loading="lazy" decoding="async"
+                         alt="Página inicial do site da Mayla Ferraz Estética.">
+                  </picture>
+                </div>
+                <div class="device__base" aria-hidden="true"></div>
               </div>
-              <div class="device__base" aria-hidden="true"></div>
+              <div class="device device--phone device--overlap">
+                <div class="device__screen">
+                  <picture>
+                    <source srcset="assets/img/casos/mayla-mobile.avif" type="image/avif">
+                    <img src="assets/img/casos/mayla-mobile.jpg" width="780" height="1688" loading="lazy" decoding="async"
+                         alt="O mesmo site da Mayla Ferraz visto no celular.">
+                  </picture>
+                </div>
+              </div>
             </div>
-            <div class="device device--phone device--overlap">
-              <div class="device__screen">
-                <picture>
-                  <source srcset="assets/img/casos/mayla-mobile.avif" type="image/avif">
-                  <img src="assets/img/casos/mayla-mobile.jpg" width="780" height="1688" loading="lazy" decoding="async"
-                       alt="O mesmo site da Mayla Ferraz visto no celular.">
-                </picture>
-              </div>
-            </div>
-          </div>
 
-          <div class="caso__texto">
-            <p class="caso__cliente">Mayla Ferraz</p>
-            <h3>Site de estética</h3>
-            <dl class="caso__specs">
-              <dt>Solução</dt>
-              <dd>Site institucional focado em conversão, com agendamento pelo WhatsApp.</dd>
-              <div data-c-block>
-                <dt>Resultado</dt>
-                <dd data-c="maylaSiteResultado"></dd>
-              </div>
-            </dl>
-            <a class="link-forte" href="https://maylaferraz.com.br" target="_blank" rel="noopener">
-              Visitar o site <span aria-hidden="true">↗</span>
-            </a>
-          </div>
-        </article>
-
-        <article class="card card--light caso reveal" data-delay="1">
-          <div class="caso__visual">
-            <div class="device device--laptop">
-              <div class="device__screen">
-                <picture>
-                  <source srcset="assets/img/casos/mayla-app.avif" type="image/avif">
-                  <img src="assets/img/casos/mayla-app.jpg" width="1600" height="1000" loading="lazy" decoding="async"
-                       alt="Painel de gestão para estética, com agenda do dia e retornos de cliente sugeridos.">
-                </picture>
-              </div>
-              <div class="device__base" aria-hidden="true"></div>
+            <div class="entregavel__texto">
+              <p class="entregavel__rotulo">Site de estética</p>
+              <dl class="caso__specs">
+                <dt>Solução</dt>
+                <dd>Site institucional focado em conversão, com agendamento pelo WhatsApp.</dd>
+                <div data-c-block>
+                  <dt>Resultado</dt>
+                  <dd data-c="maylaSiteResultado"></dd>
+                </div>
+              </dl>
+              <a class="link-forte" href="https://maylaferraz.com.br" target="_blank" rel="noopener">
+                Visitar o site <span aria-hidden="true">↗</span>
+              </a>
             </div>
           </div>
 
-          <div class="caso__texto">
-            <p class="caso__cliente">Uso privado</p>
-            <h3>Painel de gestão para estética</h3>
-            <dl class="caso__specs">
-              <dt>Solução</dt>
-              <dd>Agenda, clientes, vendas, serviços e financeiro em um só lugar, com sugestão de quem está com retorno atrasado.</dd>
-              <div data-c-block>
-                <dt>Resultado</dt>
-                <dd data-c="maylaPainelResultado"></dd>
-              </div>
-            </dl>
-            <p class="caso__privado">Sistema interno, sem link público.</p>
-          </div>
-        </article>
-
-        <article class="card card--light caso caso--larga reveal" data-delay="2">
-          <div class="caso__texto">
-            <p class="caso__cliente">Horikawa Dojo</p>
-            <h3>Site da academia</h3>
-            <dl class="caso__specs">
-              <dt>Solução</dt>
-              <dd>Modalidades, horários, equipe e loja, com o WhatsApp sempre à mão para quem quer fazer a primeira aula.</dd>
-              <div data-c-block>
-                <dt>Resultado</dt>
-                <dd data-c="horikawaSiteResultado"></dd>
-              </div>
-            </dl>
-            <a class="link-forte" href="https://horikawadojo.com.br" target="_blank" rel="noopener">
-              Visitar o site <span aria-hidden="true">↗</span>
-            </a>
-          </div>
-
-          <div class="caso__visual">
-            <div class="device device--laptop">
-              <div class="device__screen">
-                <picture>
-                  <source srcset="assets/img/casos/horikawa-desktop.avif" type="image/avif">
-                  <img src="assets/img/casos/horikawa-desktop.jpg" width="1600" height="1000" loading="lazy" decoding="async"
-                       alt="Página inicial do site do Horikawa Dojo.">
-                </picture>
-              </div>
-              <div class="device__base" aria-hidden="true"></div>
-            </div>
-            <div class="device device--phone device--overlap">
-              <div class="device__screen">
-                <picture>
-                  <source srcset="assets/img/casos/horikawa-mobile.avif" type="image/avif">
-                  <img src="assets/img/casos/horikawa-mobile.jpg" width="780" height="1688" loading="lazy" decoding="async"
-                       alt="O mesmo site do Horikawa Dojo visto no celular.">
-                </picture>
+          <div class="card card--light entregavel">
+            <div class="entregavel__visual">
+              <div class="device device--laptop">
+                <div class="device__screen">
+                  <picture>
+                    <source srcset="assets/img/casos/mayla-app.avif" type="image/avif">
+                    <img src="assets/img/casos/mayla-app.jpg" width="1600" height="1000" loading="lazy" decoding="async"
+                         alt="Painel de gestão para estética, com agenda do dia e retornos de cliente sugeridos.">
+                  </picture>
+                </div>
+                <div class="device__base" aria-hidden="true"></div>
               </div>
             </div>
-          </div>
-        </article>
 
-      </div>
+            <div class="entregavel__texto">
+              <p class="entregavel__rotulo">Painel de gestão</p>
+              <dl class="caso__specs">
+                <dt>Solução</dt>
+                <dd>Agenda, clientes, vendas, serviços e financeiro em um só lugar, com sugestão de quem está com retorno atrasado.</dd>
+                <div data-c-block>
+                  <dt>Resultado</dt>
+                  <dd data-c="maylaPainelResultado"></dd>
+                </div>
+              </dl>
+              <p class="caso__privado">Sistema interno, sem link público.</p>
+              <p class="caso__nota">Telas reconstruídas com dados fictícios para preservar a privacidade dos clientes.</p>
+            </div>
+          </div>
+
+        </div>
+      </article>
+
     </div>
   </section>
 

@@ -622,22 +622,6 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .servico--full .servico__specs dd { grid-row: 2; margin-bottom: 0; }
 
 /* ---------- Casos ---------- */
-.caso {
-  display: grid;
-  gap: var(--space-6);
-  padding: var(--space-6);
-  overflow: hidden;
-}
-.caso__cliente {
-  font-family: var(--font-display);
-  font-size: var(--step--1);
-  font-weight: 600;
-  letter-spacing: 0.09em;
-  text-transform: uppercase;
-  color: var(--on-light-muted);
-  margin-bottom: var(--space-2);
-}
-.caso h3 { margin-bottom: var(--space-5); }
 
 .caso__specs { margin: 0; }
 .caso__specs dt {
@@ -680,22 +664,6 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 }
 .link-forte:hover { gap: var(--space-3); }
 
-/* Destaque: texto de um lado, dispositivo do outro */
-.caso--destaque {
-  grid-template-columns: 0.9fr 1.1fr;
-  align-items: center;
-  margin-top: var(--space-7);
-  padding: var(--space-7);
-}
-
-/* Secundários */
-.casos-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--space-4);
-  margin-top: var(--space-4);
-}
-.caso--larga { grid-column: 1 / -1; grid-template-columns: 0.9fr 1.1fr; align-items: center; }
 
 /* ---------- Molduras de dispositivo ---------- */
 .caso__visual { position: relative; }
@@ -991,4 +959,51 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 @media (max-width: 700px) {
   .cta-final__inner { flex-direction: column; align-items: flex-start; }
   .cta-final .btn--grande { width: 100%; }
+}
+
+
+/* =========================================================================
+   Casos agrupados por cliente
+   ========================================================================= */
+
+.cliente { margin-top: var(--space-8); }
+.cliente:first-of-type { margin-top: var(--space-7); }
+
+.cliente__cab { margin-bottom: var(--space-5); max-width: 62ch; }
+.cliente__cab h3 { font-size: var(--step-3); margin-bottom: var(--space-3); }
+.cliente__intro { font-size: var(--step-1); line-height: 1.55; color: var(--on-light-muted); }
+
+.entregaveis {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4);
+}
+
+.entregavel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  padding: var(--space-6);
+  overflow: hidden;
+}
+.entregavel__visual { position: relative; }
+.entregavel__texto { display: flex; flex-direction: column; flex: 1; }
+
+.entregavel__rotulo {
+  font-family: var(--font-display);
+  font-size: var(--step-1);
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  color: var(--on-light);
+  margin-bottom: var(--space-4);
+}
+
+/* O link fica sempre colado na base, então os dois cartões alinham */
+.entregavel .link-forte,
+.entregavel .caso__privado { margin-top: auto; }
+.entregavel .caso__nota { margin-top: var(--space-3); }
+
+@media (max-width: 900px) {
+  .entregaveis { grid-template-columns: 1fr; }
+  .cliente { margin-top: var(--space-7); }
 }

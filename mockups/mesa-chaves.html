@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Mockup Mesa — Chaveamento</title>
+<!--
+  FONTE DE MOCKUP, NÃO VAI PARA O AR.
+  Tela de chaveamento do Mesa, com dados fictícios.
+  Nenhum nome real de atleta ou academia aparece aqui.
+-->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F5F6F8; --card: #fff; --line: #E4E7EB; --line-soft: #EEF0F3;
+    --ink: #1B1F23; --ink-2: #5C6670; --ink-3: #8A939C;
+    --teal: #10606E; --teal-soft: #E8F1F3; --green: #1A9750; --green-soft: #E7F5ED;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    width: 1440px; height: 900px; overflow: hidden;
+    background: var(--bg); color: var(--ink);
+    font-family: Inter, sans-serif; font-size: 14px;
+  }
+
+  .top { display:flex; align-items:center; justify-content:space-between;
+         background:#fff; border-bottom:1px solid var(--line); padding:14px 28px; }
+  .logo { font-size:19px; font-weight:700; color:var(--teal); letter-spacing:-.02em; }
+  .steps { display:flex; align-items:center; gap:6px; }
+  .step { display:flex; align-items:center; gap:7px; padding:7px 13px; border-radius:8px;
+          font-size:13.5px; font-weight:500; color:var(--ink-2); }
+  .step .n { display:grid; place-items:center; width:19px; height:19px; border-radius:50%;
+             background:var(--line); color:var(--ink-2); font-size:11px; font-weight:700; }
+  .step.on { background:var(--teal-soft); color:var(--teal); font-weight:600; }
+  .step.on .n { background:var(--teal); color:#fff; }
+
+  .wrap { padding: 26px 32px; }
+
+  .cab { display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:26px; }
+  .cab h1 { font-size:26px; font-weight:700; letter-spacing:-.02em; }
+  .cab .meta { margin-top:6px; font-size:14px; color:var(--ink-3); }
+  .acoes { display:flex; gap:9px; }
+  .btn { padding:10px 16px; border:1px solid var(--line); border-radius:8px;
+         background:#fff; font-size:13.5px; font-weight:600; white-space:nowrap; }
+  .btn-teal { background:var(--teal); border-color:var(--teal); color:#fff; }
+
+  /* Chave */
+  .chave { display:flex; gap:0; align-items:stretch; height:600px; }
+  .col { display:flex; flex-direction:column; width:242px; flex-shrink:0; }
+  .col-titulo { flex:0 0 auto; font-size:11.5px; font-weight:700; letter-spacing:.09em;
+                text-transform:uppercase; color:var(--ink-3); margin-bottom:14px; }
+  .col-lutas { flex:1; display:flex; flex-direction:column; justify-content:space-around; }
+
+  /* Conector: uma chave em C ligando duas lutas à próxima */
+  .liga { width:36px; flex-shrink:0; display:flex; flex-direction:column;
+          justify-content:space-around; padding-top:26px; }
+  .liga .brace { flex:1; margin-block:32px; border-right:1.5px solid var(--line);
+                 border-top:1.5px solid var(--line); border-bottom:1.5px solid var(--line);
+                 border-radius:0 7px 7px 0; }
+  .liga.reta { justify-content:center; }
+  .liga.reta .brace { flex:0 0 auto; height:0; margin:0; border:0;
+                      border-top:1.5px solid var(--line); border-radius:0; }
+
+  .luta { background:var(--card); border:1px solid var(--line); border-radius:10px;
+          overflow:hidden; box-shadow:0 1px 2px rgba(0,0,0,.03); }
+  .at { display:flex; align-items:center; gap:10px; padding:9px 12px; }
+  .at + .at { border-top:1px solid var(--line-soft); }
+  .at .seed { width:14px; font-size:11px; color:var(--ink-3); font-weight:600; }
+  .at .nome { flex:1; font-size:13.5px; font-weight:500; line-height:1.25; }
+  .at .eq { font-size:11.5px; color:var(--ink-3); margin-top:1px; }
+  .at .pts { font-size:14px; font-weight:700; color:var(--ink-3); min-width:18px; text-align:right; }
+  .at.venceu { background:var(--green-soft); }
+  .at.venceu .nome { font-weight:700; }
+  .at.venceu .pts { color:var(--green); }
+
+  .vazio { background:#fff; border:1px dashed var(--line); border-radius:10px;
+           padding:22px 13px; text-align:center; font-size:12.5px; color:var(--ink-3); }
+
+  .campeao { background:linear-gradient(180deg,#FFFDF5 0%,#FFF8E6 100%);
+             border:1px solid #F0DCA8; border-radius:10px; padding:18px 16px; text-align:center; }
+  .campeao .rot { font-size:11px; font-weight:700; letter-spacing:.09em;
+                  text-transform:uppercase; color:#A07A22; }
+  .campeao .nome { margin-top:8px; font-size:17px; font-weight:700; letter-spacing:-.01em; }
+  .campeao .eq { margin-top:3px; font-size:12.5px; color:var(--ink-2); }
+
+  .rodape { position:fixed; left:0; right:0; bottom:0; display:flex;
+            align-items:center; justify-content:space-between;
+            background:#fff; border-top:1px solid var(--line);
+            padding:12px 28px; font-size:13.5px; color:var(--ink-2); }
+</style>
+</head>
+<body>
+
+  <div class="top">
+    <div class="logo">Mesa</div>
+    <div class="steps">
+      <div class="step"><span class="n">1</span>Evento</div>
+      <div class="step"><span class="n">2</span>Atletas</div>
+      <div class="step"><span class="n">3</span>Categorias</div>
+      <div class="step on"><span class="n">4</span>Chaves</div>
+      <div class="step"><span class="n">5</span>Lutas</div>
+      <div class="step"><span class="n">6</span>Placar</div>
+      <div class="step"><span class="n">7</span>Pódio</div>
+      <div class="step"><span class="n">?</span>Regras</div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="cab">
+      <div>
+        <h1>Adulto · Masculino · Faixa branca · 75 a 82 kg</h1>
+        <div class="meta">8 atletas &nbsp;·&nbsp; 7 lutas &nbsp;·&nbsp; 5 min por luta</div>
+      </div>
+      <div class="acoes">
+        <div class="btn">Refazer chave</div>
+        <div class="btn">Imprimir</div>
+        <div class="btn btn-teal">Ir para o placar →</div>
+      </div>
+    </div>
+
+    <div class="chave">
+
+      <div class="col">
+        <div class="col-titulo">Quartas</div>
+        <div class="col-lutas">
+        <div class="luta">
+          <div class="at venceu"><span class="seed">1</span><span class="nome">João Silva<div class="eq">Equipe Alvorada</div></span><span class="pts">6</span></div>
+          <div class="at"><span class="seed">8</span><span class="nome">Bruno Pereira<div class="eq">Equipe Litoral</div></span><span class="pts">2</span></div>
+        </div>
+        <div class="luta">
+          <div class="at"><span class="seed">4</span><span class="nome">Marcos Souza<div class="eq">Academia Central</div></span><span class="pts">0</span></div>
+          <div class="at venceu"><span class="seed">5</span><span class="nome">André Costa<div class="eq">Equipe Alvorada</div></span><span class="pts">4</span></div>
+        </div>
+        <div class="luta">
+          <div class="at venceu"><span class="seed">2</span><span class="nome">Pedro Santos<div class="eq">Academia Central</div></span><span class="pts">7</span></div>
+          <div class="at"><span class="seed">7</span><span class="nome">Rodrigo Lima<div class="eq">Equipe Litoral</div></span><span class="pts">2</span></div>
+        </div>
+        <div class="luta">
+          <div class="at"><span class="seed">3</span><span class="nome">Lucas Oliveira<div class="eq">Equipe Alvorada</div></span><span class="pts">3</span></div>
+          <div class="at venceu"><span class="seed">6</span><span class="nome">Felipe Almeida<div class="eq">Academia Central</div></span><span class="pts">5</span></div>
+        </div>
+        </div>
+      </div>
+
+      <div class="liga"><div class="brace"></div><div class="brace"></div></div>
+
+      <div class="col">
+        <div class="col-titulo">Semifinais</div>
+        <div class="col-lutas">
+        <div class="luta">
+          <div class="at venceu"><span class="seed">1</span><span class="nome">João Silva<div class="eq">Equipe Alvorada</div></span><span class="pts">4</span></div>
+          <div class="at"><span class="seed">5</span><span class="nome">André Costa<div class="eq">Equipe Alvorada</div></span><span class="pts">2</span></div>
+        </div>
+        <div class="luta">
+          <div class="at"><span class="seed">2</span><span class="nome">Pedro Santos<div class="eq">Academia Central</div></span><span class="pts">2</span></div>
+          <div class="at venceu"><span class="seed">6</span><span class="nome">Felipe Almeida<div class="eq">Academia Central</div></span><span class="pts">6</span></div>
+        </div>
+        </div>
+      </div>
+
+      <div class="liga"><div class="brace"></div></div>
+
+      <div class="col">
+        <div class="col-titulo">Final</div>
+        <div class="col-lutas">
+        <div class="luta">
+          <div class="at venceu"><span class="seed">1</span><span class="nome">João Silva<div class="eq">Equipe Alvorada</div></span><span class="pts">8</span></div>
+          <div class="at"><span class="seed">6</span><span class="nome">Felipe Almeida<div class="eq">Academia Central</div></span><span class="pts">2</span></div>
+        </div>
+        </div>
+      </div>
+
+      <div class="liga reta"><div class="brace" style="width:100%"></div></div>
+
+      <div class="col">
+        <div class="col-titulo">Pódio</div>
+        <div class="col-lutas">
+        <div class="campeao">
+          <div class="rot">1º lugar</div>
+          <div class="nome">João Silva</div>
+          <div class="eq">Equipe Alvorada</div>
+        </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="rodape">
+    <div>Chave montada automaticamente &nbsp;·&nbsp; 7 de 7 lutas concluídas</div>
+    <div class="btn btn-teal">Publicar resultado</div>
+  </div>
+
+</body>
+</html>
