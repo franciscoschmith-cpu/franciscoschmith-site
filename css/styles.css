@@ -533,9 +533,10 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 }
 
 @media (max-width: 720px) {
-  /* No celular a linha de prova pode quebrar, aí volta a permitir */
-  .hero__proof { flex-wrap: wrap; white-space: normal; }
-  .hero__proof li + li::before { margin-inline: var(--space-2); }
+  /* No celular os itens empilham. O separador sai: se a linha quebrasse,
+     o ponto ficaria sozinho liderando a linha de baixo. */
+  .hero__proof { flex-direction: column; align-items: flex-start; gap: var(--space-1); white-space: normal; }
+  .hero__proof li + li::before { content: none; }
 }
 
 @media (max-width: 560px) {
