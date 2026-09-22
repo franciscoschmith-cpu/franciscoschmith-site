@@ -860,7 +860,41 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 
 
 /* ---------- FAQ ---------- */
-.faq { margin-top: var(--space-7); max-width: 780px; }
+.faq-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  align-items: start;
+  gap: var(--space-6);
+  margin-top: var(--space-7);
+}
+.faq { min-width: 0; }
+
+/* O card acompanha a rolagem enquanto a lista de perguntas passa */
+.faq-ajuda {
+  position: sticky;
+  top: calc(var(--space-8) + var(--space-4));
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-6);
+  align-items: flex-start;
+}
+.faq-ajuda h3 { font-size: var(--step-1); }
+.faq-ajuda p { color: var(--on-light-muted); }
+.faq-ajuda .btn { width: 100%; }
+
+.faq__preco {
+  margin-top: var(--space-3);
+  font-family: var(--font-display);
+  font-size: var(--step-1);
+  font-weight: 700;
+  color: var(--on-light);
+}
+
+@media (max-width: 900px) {
+  .faq-grid { grid-template-columns: 1fr; }
+  .faq-ajuda { position: static; }
+}
 .faq__item { border-bottom: 1px solid var(--hairline-light); }
 
 .faq__item summary {
