@@ -556,19 +556,32 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .section > .shell > .eyebrow + h2 { margin-top: var(--space-3); }
 
 /* ---------- Dores ---------- */
+#dores { padding-bottom: calc(var(--section-y) * 0.6); }
 .dores {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-4);
+  gap: var(--space-5);
   margin-top: var(--space-7);
 }
 .dor {
   display: flex;
   flex-direction: column;
-  gap: var(--space-4);
-  padding: var(--space-6);
+  gap: var(--space-5);
+  padding: var(--space-7) var(--space-6);
+  min-height: 268px;
 }
-.dor p { font-size: var(--step-1); line-height: 1.45; max-width: none; }
+.dor__icone {
+  width: 30px; height: 30px;
+  flex-shrink: 0;
+  color: var(--brand-600);
+}
+.dor p {
+  font-size: var(--step-2);
+  line-height: 1.38;
+  letter-spacing: -0.01em;
+  max-width: none;
+  margin-top: auto;              /* texto encosta na base, ícone no topo */
+}
 
 /* ---------- Serviços: grade bento ---------- */
 .servicos {
