@@ -19,31 +19,23 @@ const screens: Record<string, { desktop?: string; mobile?: string }> = {
     desktop: "/assets/mesa-desktop-responsive.webp",
     mobile: "/assets/mesa-mobile-responsive.webp",
   },
-  gestao: {},
+  gestao: {
+    desktop: "/assets/gestao-desktop-responsive.webp",
+    mobile: "/assets/gestao-mobile-responsive.webp",
+  },
+  agro: {
+    desktop: "/assets/agro-desktop-responsive.webp",
+    mobile: "/assets/agro-mobile-responsive.webp",
+  },
 };
 
 function Screen({ caseKey, title, mobile = false }: { caseKey: string; title: string; mobile?: boolean }) {
   const src = mobile ? screens[caseKey]?.mobile : screens[caseKey]?.desktop;
-  if (src) {
-    return <img className="device-site-image" src={src} alt={`${title}: versão ${mobile ? "mobile" : "desktop"}`} loading="lazy" decoding="async" />;
-  }
-  if (caseKey === "agro") {
-    return <div className="device-concept">
-      <span className="device-concept-brand">AgroVanguard</span>
-      <span className="device-concept-label">Educação · agronegócio · IA</span>
-      <strong>Conhecimento<br />que cultiva<br /><em>o futuro.</em></strong>
-      <span className="device-concept-disclaimer">Prévia conceitual · aguardando tela real</span>
-    </div>;
-  }
-  return <div className={`device-screen-pending ${caseKey === "gestao" ? "pending-mayla" : ""}`}>
-    <div className="pending-corners" aria-hidden="true" />
-    <strong>{caseKey === "mesa" ? "Mesa" : "Mayla"}</strong>
-    <span>Telas em breve</span>
-  </div>;
+  return <img className="device-site-image" src={src} alt={`${title}: versão ${mobile ? "mobile" : "desktop"}`} loading="lazy" decoding="async" />;
 }
 
 export default function CaseDevices({ caseKey, title }: { caseKey: string; title: string }) {
-  const showPhone = Boolean(screens[caseKey]?.mobile) || caseKey === "mesa";
+  const showPhone = Boolean(screens[caseKey]?.mobile);
   return <div className={`case-visual case-visual-${caseKey} ${showPhone ? "with-phone" : "laptop-only"}`} role="group" aria-label={`Apresentação do projeto ${title}`}>
     <div className="product-hardware laptop-hardware">
       <div className={`laptop-viewport screen-${caseKey}`}><Screen caseKey={caseKey} title={title} /></div>
