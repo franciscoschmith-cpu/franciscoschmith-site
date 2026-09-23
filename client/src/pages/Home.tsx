@@ -5,6 +5,7 @@ import { useRef, useState } from "react";
 const heroPortraitSrc = "/assets/hero_editorial_portrait_98277498.webp";
 const aboutPortraitSrc = "/assets/about_editorial_portrait_3732f601.webp";
 const deskSrc = "/assets/process-desk_14ebfaee.jpg";
+const whatsappUrl = "https://wa.me/5545999916583?text=Oi%20Francisco%2C%20quero%20conversar%20sobre%20um%20projeto.";
 
 const services = [
   {
@@ -82,7 +83,7 @@ export default function Home() {
             <button onClick={() => scrollTo("#sobre")}>Sobre</button>
             <button onClick={() => scrollTo("#faq")}>FAQ</button>
           </nav>
-          <button className="nav-cta" onClick={() => scrollTo("#contato")}>Falar sobre um projeto <ArrowUpRight size={14} /></button>
+          <button className="nav-cta" onClick={() => window.open(whatsappUrl, "_blank")}>Falar sobre um projeto <ArrowUpRight size={14} /></button>
           <button className="menu-button" onClick={() => setMenuOpen(!menuOpen)} aria-label="Abrir menu"><Menu size={20} /></button>
         </header>
 
@@ -92,7 +93,7 @@ export default function Home() {
             <h1>Seu negócio não precisa {"de\u00a0mais"}<br />{"uma\u00a0ferramenta."}<br /><em>Precisa de um sistema que faça sentido.</em></h1>
             <p className="hero-lede">Eu transformo processos espalhados em sites, sistemas e automações simples de usar. Você vende, decide e opera com menos improviso.</p>
             <div className="hero-actions">
-              <button className="button button-acid" onClick={() => scrollTo("#contato")}>Me conta o problema <ArrowRight size={16} /></button>
+              <button className="button button-acid" onClick={() => window.open(whatsappUrl, "_blank")}>Me conta o problema <ArrowRight size={16} /></button>
               <button className="text-link light-link" onClick={() => scrollTo("#cases")}>Ver como isso funciona <ArrowDown size={15} /></button>
             </div>
             <div className="hero-proof"><span>Atendimento remoto</span><span className="proof-line" /><span>Cascavel, PR · Brasil</span></div>
@@ -158,7 +159,7 @@ export default function Home() {
 
       <section className="faq-section section-pad" id="faq"><div className="container faq-grid"><div><div className="eyebrow"><span className="eyebrow-dot" /> perguntas frequentes</div><h2>Antes de<br /><em>começar.</em></h2></div><div className="faq-list">{faqs.map(([question, answer], index) => <div className={openFaq === index ? "faq-item open" : "faq-item"} key={question}><button onClick={() => setOpenFaq(openFaq === index ? null : index)}><span>{question}</span>{openFaq === index ? <CircleDot size={16} /> : <Plus size={18} />}</button><div className="faq-answer"><p>{answer}</p></div></div>)}</div></div></section>
 
-      <section className="contact-section" id="contato"><div className="container contact-inner"><div><div className="eyebrow light"><span className="eyebrow-dot" /> próximo passo</div><h2>Tem um processo<br /><em>pedindo clareza?</em></h2><p>Me conta onde a operação trava. Se eu puder ajudar, a gente descobre isso na primeira conversa.</p></div><button className="button button-acid contact-button" onClick={() => window.open("https://wa.me/5545999916583?text=Oi%20Francisco%2C%20quero%20conversar%20sobre%20um%20projeto.", "_blank")}>Abrir conversa no WhatsApp <ArrowUpRight size={16} /></button></div><footer className="container footer"><div className="footer-brand"><span className="brand-mark">FS</span><span>Francisco Schmith<br /><small>Cascavel, Paraná · Brasil</small></span></div><div className="footer-links"><button onClick={() => scrollTo("#inicio")}>voltar ao topo ↑</button><a href="mailto:oi@franciscoschmith.com">oi@franciscoschmith.com</a><span>© 2026</span></div></footer></section>
+      <section className="contact-section" id="contato"><div className="container contact-inner"><div><div className="eyebrow light"><span className="eyebrow-dot" /> próximo passo</div><h2>Tem um processo<br /><em>pedindo clareza?</em></h2><p>Me conta onde a operação trava. Se eu puder ajudar, a gente descobre isso na primeira conversa.</p></div><button className="button button-acid contact-button" onClick={() => window.open(whatsappUrl, "_blank")}>Abrir conversa no WhatsApp <ArrowUpRight size={16} /></button></div><footer className="container footer"><div className="footer-brand"><span className="brand-mark">FS</span><span>Francisco Schmith<br /><small>Cascavel, Paraná · Brasil</small></span></div><div className="footer-links"><button onClick={() => scrollTo("#inicio")}>voltar ao topo ↑</button><a href="mailto:oi@franciscoschmith.com">oi@franciscoschmith.com</a><span>© 2026</span></div></footer></section>
     </main>
   );
 }
