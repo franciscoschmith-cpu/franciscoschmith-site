@@ -1,0 +1,117 @@
+/* Licensed photographic hardware frames; the site captures are separate DOM layers. */
+.case-visual {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1.3;
+  align-self: center;
+  isolation: isolate;
+  background: transparent;
+}
+.product-hardware { position: absolute; container-type: inline-size; }
+.hardware-frame { position: relative; z-index: 2; width: 100%; height: auto; pointer-events: none; }
+.laptop-hardware {
+  width: 92%;
+  left: -1%;
+  top: 25%;
+  transform: rotate(-2deg);
+  filter: drop-shadow(0 22px 16px rgb(36 38 30 / 14%));
+}
+.phone-hardware {
+  width: 25%;
+  right: 0;
+  top: 14%;
+  z-index: 3;
+  transform: rotate(3deg);
+  filter: drop-shadow(5px 15px 10px rgb(36 38 30 / 19%));
+}
+.laptop-viewport {
+  position: absolute;
+  left: calc(88 / 800 * 100%);
+  top: calc(26 / 460 * 100%);
+  width: calc(623 / 800 * 100%);
+  height: calc(389 / 460 * 100%);
+  overflow: hidden;
+  background: #0e0e0e;
+}
+.phone-viewport {
+  position: absolute;
+  left: calc(16 / 389 * 100%);
+  top: calc(13 / 800 * 100%);
+  width: calc(357 / 389 * 100%);
+  height: calc(774 / 800 * 100%);
+  border-radius: 14% / 6.5%;
+  overflow: hidden;
+  background: #0e0e0e;
+}
+.phone-content { position: absolute; inset: 6% 0 0; }
+.device-site-image { display: block; width: 100%; height: 100%; object-fit: contain; object-position: center; }
+.phone-content .device-site-image { object-position: top center; }
+.screen-mayla { background: #817b76; }
+.screen-mesa { background: #f5f4ed; }
+.screen-gestao { background: #292d2a; }
+/* A mobile-led composition for the aesthetic practice, rather than five identical poses. */
+.case-visual-mayla .phone-hardware { width: 30%; left: 0; right: auto; top: 2%; transform: rotate(-3deg); }
+.case-visual-mayla .laptop-hardware { width: 85%; left: 17%; top: 33%; transform: rotate(1deg); }
+.laptop-only .laptop-hardware { width: 100%; left: 0; top: 19%; transform: rotate(-1.5deg); }
+.device-screen-pending { position: relative; display: flex; width: 100%; height: 100%; flex-direction: column; justify-content: center; align-items: center; gap: 2cqw; background: #f5f4ed; color: #545b50; }
+.device-screen-pending strong { font-family: var(--serif); font-weight: 400; font-size: 8cqw; }
+.device-screen-pending > span { font-family: var(--mono); font-size: 1.7cqw; text-transform: uppercase; letter-spacing: .08em; }
+.pending-corners { position: absolute; inset: 13%; border: 1px dashed rgb(65 75 55 / 15%); }
+.pending-mayla { background: #292d2a; color: #d2d9c7; }
+.pending-mayla .pending-corners { border-color: rgb(210 217 199 / 16%); }
+.phone-content .device-screen-pending strong { font-size: 20cqw; }
+.phone-content .device-screen-pending > span { font-size: 5cqw; }
+.device-concept { position: relative; width: 100%; height: 100%; padding: 4cqw; display: flex; flex-direction: column; align-items: flex-start; background: #e1e7d8; color: #294430; overflow: hidden; }
+.device-concept-brand { font-family: var(--serif); font-size: 3cqw; }
+.device-concept-label { font-family: var(--mono); text-transform: uppercase; font-size: 1cqw; letter-spacing: .08em; margin-top: 3cqw; }
+.device-concept strong { font-size: 6cqw; line-height: .95; letter-spacing: -.06em; margin-top: 2cqw; }
+.device-concept strong em { font-family: var(--serif); font-weight: 400; color: #648446; }
+.device-concept-disclaimer { font-family: var(--mono); font-size: 1cqw; text-transform: uppercase; margin-top: auto; padding-top: 2cqw; }
+/* Navigation participates in grid flow: no overlay, reserved margins or fixed card height. */
+.cases-section .featured-case-slide {
+  grid-template-columns: minmax(0, .76fr) minmax(0, 1.24fr);
+  gap: 0 40px;
+  min-height: 0;
+  padding: 64px 52px 0;
+}
+.cases-section .featured-case-copy { padding: 12px 0 46px; }
+.cases-section .featured-case-nav { position: static; grid-column: 1 / -1; margin: 0 -52px; padding: 20px 52px; min-height: 80px; gap: 24px; background: transparent; }
+.cases-section .featured-dots { flex-wrap: wrap; gap: 10px 20px; }
+.cases-section .featured-dots button { white-space: nowrap; }
+.cases-section .featured-arrows { flex: 0 0 auto; }
+.cases-section .featured-arrows button { width: 38px; height: 38px; }
+.case-pending-note { font-family: var(--mono); color: #737c70; font-size: 10px; }
+@media (max-width: 1050px) and (min-width: 901px) {
+  .cases-section .featured-case-slide { padding: 56px 32px 0; gap: 0 28px; }
+  .cases-section .featured-case-nav { margin: 0 -32px; padding: 18px 32px; }
+  .cases-section .featured-case-copy h3 { font-size: 49px; }
+  .cases-section .featured-dots { gap: 12px; }
+}
+@media (max-width: 900px) {
+  .cases-section .featured-case-slide { grid-template-columns: minmax(0, 1fr); padding: 48px 30px 0; }
+  .cases-section .featured-case-copy { padding: 0 0 20px; }
+  .cases-section .featured-case-copy > p, .cases-section .featured-case-copy h4 { max-width: 490px; }
+  .case-visual { max-width: 630px; justify-self: center; margin: 4px 0 20px; aspect-ratio: 1.4; }
+  .phone-hardware { width: 23%; top: 8%; }
+  .laptop-hardware { top: 19%; }
+  .case-visual-mayla .phone-hardware { width: 27%; top: 0; }
+  .case-visual-mayla .laptop-hardware { top: 29%; }
+  .laptop-only .laptop-hardware { top: 5%; }
+  .cases-section .featured-case-nav { margin: 0 -30px; padding: 18px 30px; gap: 16px; }
+}
+@media (max-width: 680px) {
+  .cases-section .featured-case-slide { padding: 44px 20px 0; }
+  .cases-section .featured-case-copy h3 { font-size: 43px; }
+  .case-visual { aspect-ratio: 1.2; margin: 6px 0 20px; }
+  .laptop-hardware { width: 94%; left: -3%; top: 28%; }
+  .phone-hardware { width: 28%; top: 14%; right: -1%; }
+  .case-visual-mayla .phone-hardware { width: 32%; top: 9%; }
+  .case-visual-mayla .laptop-hardware { width: 86%; left: 15%; top: 40%; }
+  .laptop-only .laptop-hardware { top: 18%; left: 0; width: 100%; }
+  .cases-section .featured-case-nav { margin: 0 -20px; padding: 14px 16px; gap: 10px; min-height: 74px; }
+  .cases-section .featured-dots { flex-wrap: nowrap; gap: 10px; }
+  .cases-section .featured-dots button { max-width: 75px; white-space: normal; }
+  .cases-section .featured-dots button.active { display: flex; flex-direction: column; gap: 2px; }
+  .cases-section .featured-arrows { gap: 5px; }
+  .cases-section .featured-arrows button { width: 32px; height: 32px; }
+}
