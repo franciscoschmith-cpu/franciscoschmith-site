@@ -15,7 +15,10 @@ const screens: Record<string, { desktop?: string; mobile?: string }> = {
     desktop: "/assets/mayla-desktop-responsive_09aee311.webp",
     mobile: "/assets/mayla-mobile-responsive_6781199a.webp",
   },
-  mesa: {},
+  mesa: {
+    desktop: "/assets/mesa-desktop-responsive.webp",
+    mobile: "/assets/mesa-mobile-responsive.webp",
+  },
   gestao: {},
 };
 

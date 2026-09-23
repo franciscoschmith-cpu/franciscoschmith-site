@@ -11,4 +11,6 @@ Device marks remain the property of their holders. The site does not claim an of
 
 The Horikawa desktop screenshot is the user-provided capture with the logo animation loaded. Horikawa and Mayla mobile screenshots were captured separately from their public websites at a 402 × 832 CSS-pixel viewport, with a 2× device scale factor. The Mayla desktop screenshot was captured at 1440 × 900 with a 2× scale factor. Website screenshots are kept separate from the frame assets so content remains unchanged and can be replaced independently.
 
-Mesa and Gestão para Mayla remain empty placeholders pending actual product screenshots. AgroVanguard remains explicitly conceptual because its public site was unavailable during the earlier capture.
+The Mesa desktop and mobile screenshots are user-provided captures of the product; the academy names shown in the sample data (originally real, well-known BJJ teams) were replaced with fictional names before publishing, consistent with the fictionalized data already used for the Horikawa and Mayla mockups.
+
+Gestão para Mayla remains an empty placeholder pending an actual product screenshot. AgroVanguard remains explicitly conceptual because its public site was unavailable during the earlier capture.
