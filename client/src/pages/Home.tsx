@@ -89,7 +89,7 @@ export default function Home() {
         <div className="hero-content container">
           <div className="hero-copy">
             <div className="eyebrow light"><span className="eyebrow-dot" /> estratégia antes da tecnologia</div>
-            <h1>Seu negócio não precisa de mais<br />{"uma\u00a0ferramenta."}<br /><em>Precisa de um sistema que faça sentido.</em></h1>
+            <h1>Seu negócio não precisa {"de\u00a0mais"}<br />{"uma\u00a0ferramenta."}<br /><em>Precisa de um sistema que faça sentido.</em></h1>
             <p className="hero-lede">Eu transformo processos espalhados em sites, sistemas e automações simples de usar. Você vende, decide e opera com menos improviso.</p>
             <div className="hero-actions">
               <button className="button button-acid" onClick={() => scrollTo("#contato")}>Me conta o problema <ArrowRight size={16} /></button>
