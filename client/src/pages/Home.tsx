@@ -134,7 +134,7 @@ export default function Home() {
 
       <section className="cases-section section-pad" id="cases">
         <div className="container">
-          <div className="section-head cases-head"><div><div className="eyebrow"><span className="eyebrow-dot" /> casos selecionados</div><h2>Projetos que<br /><em>viraram experiência.</em></h2></div><p>Uma amostra do que já foi pensado e construído. Cada projeto começa com uma fricção concreta da operação.</p></div>
+          <div className="section-head cases-head"><div><div className="eyebrow"><span className="eyebrow-dot" /> casos selecionados</div><h2>Projetos que<br /><em>viraram experiência.</em></h2></div></div>
           <div className="commercial-case-grid">
             {featuredCases.map((item) => <article className={`commercial-case-card ${item.key}`} key={item.key}>
               <div className="commercial-case-copy"><div className="case-kicker">{item.type}</div><h3>{item.title}</h3><h4>{item.headline}</h4><p>{item.text}</p><div className="case-result"><span className="result-mark"><Check size={14} /></span><div><span className="result-label">o que este projeto precisava resolver</span><strong>{item.result}</strong></div></div>{item.href.startsWith("#") ? <span className="case-pending-note">Apresentação visual em preparação</span> : <a className="text-link dark-link" href={item.href} target="_blank" rel="noreferrer">Visitar projeto <ArrowUpRight size={15} /></a>}</div>
