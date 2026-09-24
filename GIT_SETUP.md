@@ -1,21 +1,27 @@
-# Francisco Schmith redesign
+# Francisco Schmith — Commercial Concept
 
-Exportação autossuficiente do projeto para subir em um repositório Git.
+Esta é uma cópia experimental do portfólio com comunicação comercial mais objetiva. O projeto original não foi alterado.
 
 ## Rodar localmente
+
+Requisitos: Node.js 20+ e pnpm.
 
 ```bash
 pnpm install
 pnpm dev
 ```
 
-Para gerar a versão de produção:
+Depois, abra `http://localhost:3000`.
+
+## Build de produção
 
 ```bash
-pnpm run build
-pnpm start
+pnpm check
+pnpm exec vite build
 ```
 
-Os assets usados pela home estão em `client/public/assets/` e os caminhos da aplicação foram ajustados para `/assets/...`. Portanto, esta cópia não depende do armazenamento privado do WebDev.
+## O que foi testado
 
-O projeto é um frontend React + Vite. O `server/` é o servidor estático incluído pelo template.
+A versão foi validada em desktop, tablet e mobile. Os cinco cases aparecem na seção de portfólio, os serviços possuem descrições de público e entrega, o FAQ tem seis perguntas e os assets usados estão incluídos localmente em `client/public/assets/`.
+
+A AgroVanguard permanece apresentada como case, sem classificação como projeto autoral.

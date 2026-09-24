@@ -1,6 +1,6 @@
 import CaseDevices from "@/components/CaseDevices";
-import { ArrowDown, ArrowRight, ArrowUpRight, Check, CircleDot, Menu, Plus } from "lucide-react";
-import { useRef, useState } from "react";
+import { ArrowDown, ArrowRight, ArrowUpRight, Check, CircleDot, Menu, Minus, Plus } from "lucide-react";
+import { useState } from "react";
 
 const heroPortraitSrc = "/assets/hero_editorial_portrait_98277498.webp";
 const aboutPortraitSrc = "/assets/about_editorial_portrait_3732f601.webp";
@@ -10,63 +10,54 @@ const whatsappUrl = "https://wa.me/5545999916583?text=Oi%20Francisco%2C%20quero%
 const services = [
   {
     number: "01",
-    title: "Sites que orientam",
-    text: "Páginas com clareza de oferta, prova e próximo passo, feitas para o cliente entender e agir.",
-    tag: "presença + conversão",
+    title: "Sites que trazem clientes",
+    audience: "Para clínicas, academias e negócios locais que precisam explicar seu valor e gerar uma próxima conversa.",
+    deliver: "Sites institucionais, landing pages e páginas de campanha com oferta clara, prova e chamada para ação.",
+    result: "mais clareza para vender",
   },
   {
     number: "02",
-    title: "Sistemas que organizam",
-    text: "Ferramentas sob medida para tirar a operação do improviso e devolver visão para quem decide.",
-    tag: "operação + controle",
+    title: "Sistemas que tiram você da planilha",
+    audience: "Para operações que vivem entre planilhas, mensagens soltas e retrabalho.",
+    deliver: "Sistemas internos sob medida para organizar pedidos, atendimento, dados e decisões em um só lugar.",
+    result: "mais controle na operação",
   },
   {
     number: "03",
-    title: "Rotinas que rodam",
-    text: "Automações pontuais para o trabalho repetitivo deixar de depender de planilha, memória e cobrança.",
-    tag: "tempo + consistência",
+    title: "Automações que devolvem seu tempo",
+    audience: "Para tarefas repetitivas que consomem horas e dependem de memória ou cobrança.",
+    deliver: "Integrações e rotinas automáticas para reduzir trabalho manual sem complicar o processo.",
+    result: "menos tempo no operacional",
   },
 ];
 
 const faqs = [
   ["Você trabalha só com empresas de Cascavel?", "Não. A base é em Cascavel, mas o processo é remoto e funciona com clientes em qualquer lugar do Brasil."],
-  ["Você entrega só a interface?", "Não. O projeto começa pelo processo e pode incluir interface, sistema, integrações, treinamento e suporte."],
+  ["Quanto tempo leva um projeto?", "Depende do escopo. Um site enxuto pode avançar em algumas semanas; sistemas e automações são divididos em etapas para validar o que importa primeiro."],
+  ["Você entrega só a interface?", "Não. O projeto pode incluir estratégia, interface, sistema, integrações, treinamento e documentação essencial."],
+  ["Eu preciso fornecer todo o conteúdo?", "Você traz o conhecimento do negócio. Eu ajudo a organizar a informação, definir a estrutura e identificar o que ainda precisa ser produzido."],
+  ["Existe suporte depois da entrega?", "Sim. A entrega inclui orientação para a continuidade e podemos combinar suporte, ajustes e evolução conforme a necessidade."],
   ["Como saber o investimento?", "Depois de uma conversa curta sobre o problema, envio uma proposta com escopo, etapas e investimento. Sem orçamento genérico."],
 ];
 
-const portfolioCases = [
-  { type: "site de academia / dojo", title: "Horikawa Dojo", copy: "Jiu-jitsu, MMA e wrestling: um dojo para começar, evoluir ou competir.", domain: "horikawadojo.com.br", href: "https://www.horikawadojo.com.br", theme: "dojo", mark: "道", visual: "horikawa" },
-  { type: "site de estética facial", title: "Mayla Ferraz", copy: "Estética facial personalizada, com cuidado delicado e foco na saúde da pele.", domain: "maylaferraz.com.br", href: "https://www.maylaferraz.com.br", theme: "skin", mark: "MF", visual: "mayla" },
-  { type: "sistema de gestão", title: "Gestão para Mayla", copy: "Uma operação mais organizada por trás de uma experiência de atendimento premium.", domain: "projeto interno", href: "https://www.maylaferraz.com.br", theme: "system", mark: "01", visual: "system" },
-  { type: "edutec com IA", title: "AgroVanguard", copy: "Educação e tecnologia para aproximar conhecimento do agronegócio.", domain: "agrovanguard.com.br", href: "https://agrovanguard.com.br", theme: "agro", mark: "AV", visual: "agro" },
-];
-
 const featuredCases = [
-  { key: "horikawa", index: "01", type: "site institucional · dojo", title: "Horikawa Dojo", headline: "Um site que traduz disciplina em caminho.", text: "Uma presença digital para apresentar modalidades, turmas, equipe e a primeira visita sem intimidar quem está começando.", result: "clareza para quem chega · estrutura para quem evolui", href: "https://www.horikawadojo.com.br", domain: "horikawadojo.com.br" },
-  { key: "mayla", index: "02", type: "site institucional · estética facial", title: "Mayla Ferraz", headline: "Cuidado premium começa antes do agendamento.", text: "Uma experiência digital delicada para explicar protocolos, transmitir confiança e levar a pessoa certa para a conversa.", result: "acolhimento + personalização + agendamento", href: "https://www.maylaferraz.com.br", domain: "maylaferraz.com.br" },
-  { key: "agro", index: "03", type: "edutec · agronegócio + IA", title: "AgroVanguard", headline: "Conhecimento aplicado para um setor que não para.", text: "Uma edutec para aproximar formação, agronegócio e tecnologia em uma experiência mais acessível.", result: "educação + IA aplicada ao agro", href: "https://agrovanguard.com.br", domain: "agrovanguard.com.br" },
-  { key: "mesa", index: "04", type: "produto digital · operação", title: "Mesa", headline: "Uma operação mais simples para quem precisa vender.", text: "Case reservado para mostrar como o produto organiza pedidos, rotina e decisão em uma experiência direta.", result: "telas do produto · operação · clareza", href: "#contato", domain: "produto Mesa" },
-  { key: "gestao", index: "05", type: "sistema de gestão · SaaS", title: "Gestão para Mayla", headline: "A experiência premium também acontece nos bastidores.", text: "Um sistema para organizar atendimento, recorrência e visão da operação sem perder o cuidado da marca.", result: "sistema sob medida · visão · consistência", href: "#contato", domain: "SaaS interno · Mayla" },
+  { key: "horikawa", index: "01", type: "case · site para academia", title: "Horikawa Dojo", headline: "Um site que traduz disciplina em caminho.", text: "Uma presença digital para apresentar modalidades, turmas, equipe e a primeira visita sem intimidar quem está começando.", result: "clareza para quem chega · estrutura para quem evolui", href: "https://www.horikawadojo.com.br", domain: "horikawadojo.com.br" },
+  { key: "mayla", index: "02", type: "case · site de estética", title: "Mayla Ferraz", headline: "Cuidado premium começa antes do agendamento.", text: "Uma experiência digital delicada para explicar protocolos, transmitir confiança e levar a pessoa certa para a conversa.", result: "acolhimento + personalização + agendamento", href: "https://www.maylaferraz.com.br", domain: "maylaferraz.com.br" },
+  { key: "agro", index: "03", type: "case · edutec com IA", title: "AgroVanguard", headline: "Conhecimento aplicado para um setor que não para.", text: "Educação e tecnologia para aproximar conhecimento do agronegócio em uma experiência digital mais acessível.", result: "educação + tecnologia + agronegócio", href: "https://agrovanguard.com.br", domain: "agrovanguard.com.br" },
+  { key: "mesa", index: "04", type: "case · produto digital", title: "Mesa", headline: "Uma operação mais simples para quem precisa vender.", text: "Um produto para organizar pedidos, rotina e decisão em uma experiência direta.", result: "telas do produto · operação · clareza", href: "#contato", domain: "produto Mesa" },
+  { key: "gestao", index: "05", type: "case · sistema de gestão", title: "Gestão para Mayla", headline: "A experiência premium também acontece nos bastidores.", text: "Um sistema para organizar atendimento, recorrência e visão da operação sem perder o cuidado da marca.", result: "sistema sob medida · visão · consistência", href: "#contato", domain: "SaaS interno · Mayla" },
 ];
 
 export default function Home() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
-  const casesRef = useRef<HTMLDivElement>(null);
-  const [activeFeature, setActiveFeature] = useState(0);
 
   const scrollTo = (id: string) => {
     document.querySelector(id)?.scrollIntoView({ behavior: "smooth" });
     setMenuOpen(false);
   };
 
-  const scrollCases = (direction: number) => {
-    casesRef.current?.scrollBy({ left: direction * 355, behavior: "smooth" });
-  };
 
-  const changeFeature = (direction: number) => {
-    setActiveFeature((current) => (current + direction + featuredCases.length) % featuredCases.length);
-  };
 
   return (
     <main className="site-shell">
@@ -90,8 +81,8 @@ export default function Home() {
         <div className="hero-content container">
           <div className="hero-copy">
             <div className="eyebrow light"><span className="eyebrow-dot" /> estratégia antes da tecnologia</div>
-            <h1>Seu negócio não precisa {"de\u00a0mais"}<br />{"uma\u00a0ferramenta."}<br /><em>Precisa de um sistema que faça sentido.</em></h1>
-            <p className="hero-lede">Eu transformo processos espalhados em sites, sistemas e automações simples de usar. Você vende, decide e opera com menos improviso.</p>
+            <h1>Menos improviso.<br /><em>Mais negócio funcionando.</em></h1>
+            <p className="hero-lede">Sites que trazem clientes, sistemas que tiram você da planilha e automações que devolvem seu tempo.</p>
             <div className="hero-actions">
               <button className="button button-acid" onClick={() => window.open(whatsappUrl, "_blank")}>Me conta o problema <ArrowRight size={16} /></button>
               <button className="text-link light-link" onClick={() => scrollTo("#cases")}>Ver como isso funciona <ArrowDown size={15} /></button>
@@ -120,7 +111,7 @@ export default function Home() {
             <h2>O gargalo raramente é a falta de tecnologia. <span>É a falta de clareza.</span></h2>
             <p className="intro-lede">Antes de abrir o editor, eu entendo onde o negócio perde tempo, informação ou oportunidade. Só então escolho o que precisa ser construído e o que pode continuar simples.</p>
             <div className="signal-row">
-              <div className="signal"><span className="signal-icon">↗</span><div><strong>menos ruído</strong><span>um lugar certo para cada coisa</span></div></div>
+              <div className="signal"><span className="signal-icon"><Minus size={15} strokeWidth={1.5} /></span><div><strong>menos ruído</strong><span>um lugar certo para cada coisa</span></div></div>
               <div className="signal"><span className="signal-icon">◎</span><div><strong>mais visão</strong><span>decisões baseadas no processo real</span></div></div>
             </div>
           </div>
@@ -132,20 +123,24 @@ export default function Home() {
         <div className="container">
           <div className="section-head split-head"><div><div className="eyebrow"><span className="eyebrow-dot" /> o que eu faço</div><h2>Três caminhos.<br /><em>Um mesmo objetivo.</em></h2></div><p>Escolher a ferramenta certa é parte do trabalho. Saber o que não construir também.</p></div>
           <div className="service-list">
-            {services.map((service) => <article className="service-row" key={service.number}><span className="service-number">{service.number}</span><h3>{service.title}</h3><p>{service.text}</p><span className="service-tag">{service.tag}</span></article>)}
+            {services.map((service) => <article className="service-row commercial-service-row" key={service.number}>
+              <span className="service-number">{service.number}</span>
+              <div className="service-main"><h3>{service.title}</h3><p><strong>Para quem:</strong> {service.audience}</p></div>
+              <div className="service-detail"><p><strong>O que entra:</strong> {service.deliver}</p><span className="service-tag">{service.result}</span></div>
+            </article>)}
           </div>
         </div>
       </section>
 
       <section className="cases-section section-pad" id="cases">
         <div className="container">
-          <div className="section-head cases-head"><div><div className="eyebrow"><span className="eyebrow-dot" /> casos selecionados</div><h2>Do problema<br /><em>para o próximo passo.</em></h2></div><p>Não são telas soltas. Cada projeto começa com uma fricção concreta da operação.</p></div>
-          {(() => { const item = featuredCases[activeFeature]; return <article className={`featured-case-slide ${item.key}`}>
-            <div className="featured-case-copy"><div className="case-kicker">{item.index} / {String(featuredCases.length).padStart(2, "0")} · {item.type}</div><h3>{item.title}</h3><h4>{item.headline}</h4><p>{item.text}</p><div className="case-result"><span className="result-mark"><Check size={14} /></span><div><span className="result-label">o que a entrega precisa fazer</span><strong>{item.result}</strong></div></div>{item.href.startsWith("#") ? <span className="case-pending-note">Apresentação visual em preparação</span> : <a className="text-link dark-link" href={item.href} target="_blank" rel="noreferrer">Visitar projeto <ArrowUpRight size={15} /></a>}</div>
-            <CaseDevices caseKey={item.key} title={item.title} />
-            <div className="featured-case-nav"><div className="featured-dots">{featuredCases.map((feature, index) => <button className={index === activeFeature ? "active" : ""} onClick={() => setActiveFeature(index)} aria-pressed={index === activeFeature} key={feature.key} aria-label={`Mostrar ${feature.title}`}>{feature.title}</button>)}</div><div className="featured-arrows"><button onClick={() => changeFeature(-1)} aria-label="Case anterior">←</button><button onClick={() => changeFeature(1)} aria-label="Próximo case">→</button></div></div>
-          </article>; })()}
-
+          <div className="section-head cases-head"><div><div className="eyebrow"><span className="eyebrow-dot" /> casos selecionados</div><h2>Projetos que<br /><em>viraram experiência.</em></h2></div><p>Uma amostra do que já foi pensado e construído. Cada projeto começa com uma fricção concreta da operação.</p></div>
+          <div className="commercial-case-grid">
+            {featuredCases.map((item) => <article className={`commercial-case-card ${item.key}`} key={item.key}>
+              <div className="commercial-case-copy"><div className="case-kicker">{item.index} · {item.type}</div><h3>{item.title}</h3><h4>{item.headline}</h4><p>{item.text}</p><div className="case-result"><span className="result-mark"><Check size={14} /></span><div><span className="result-label">o que este projeto precisava resolver</span><strong>{item.result}</strong></div></div>{item.href.startsWith("#") ? <span className="case-pending-note">Apresentação visual em preparação</span> : <a className="text-link dark-link" href={item.href} target="_blank" rel="noreferrer">Visitar projeto <ArrowUpRight size={15} /></a>}</div>
+              <CaseDevices caseKey={item.key} title={item.title} />
+            </article>)}
+          </div>
         </div>
       </section>
 

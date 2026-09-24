@@ -13,4 +13,4 @@ The Horikawa desktop screenshot is the user-provided capture with the logo anima
 
 The Mesa desktop and mobile screenshots are user-provided captures of the product; the academy names shown in the sample data (originally real, well-known BJJ teams) were replaced with fictional names before publishing, consistent with the fictionalized data already used for the Horikawa and Mayla mockups.
 
-The Gestão para Mayla desktop and mobile screenshots are user-provided captures of the product (client and account names in the demo data read as generic/fictional already, no changes made). The AgroVanguard desktop and mobile screenshots are user-provided captures of the live public site at agrovanguard.com.br, confirmed matching the site's current content; the case copy no longer describes it as a conceptual mockup.
+The Gestão para Mayla desktop and mobile screenshots are user-provided captures of the product (client and account names in the demo data read as generic/fictional already, no changes made). The AgroVanguard desktop and mobile screenshots are user-provided captures of the live public site at agrovanguard.com.br, confirmed matching the site's current content.
