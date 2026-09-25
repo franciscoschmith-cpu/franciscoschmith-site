@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://franciscoschmith.com.br/sitemap.xml
