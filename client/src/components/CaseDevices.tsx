@@ -1,14 +1,14 @@
 import "./case-devices.css";
 
 const deviceFrames = {
-  laptop: "/assets/macbook-air_8c072be1.png",
-  phone: "/assets/iphone-17-pro_14f6938d.png",
+  laptop: "/assets/macbook-air.webp",
+  phone: "/assets/iphone-17-pro.webp",
 };
 
 // Screens remain separate from the hardware: replace these paths, not the composition.
 const screens: Record<string, { desktop?: string; mobile?: string }> = {
   horikawa: {
-    desktop: "/assets/pasted_file_RmRtGC_image_aafe7c50.png",
+    desktop: "/assets/horikawa-desktop.webp",
     mobile: "/assets/horikawa-mobile-responsive_ec351f44.webp",
   },
   mayla: {

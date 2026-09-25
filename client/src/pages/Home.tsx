@@ -2,9 +2,9 @@ import CaseDevices from "@/components/CaseDevices";
 import { ArrowDown, ArrowRight, ArrowUpRight, Check, CircleDot, Menu, Minus, Plus } from "lucide-react";
 import { useState } from "react";
 
-const heroPortraitSrc = "/assets/hero_editorial_portrait_98277498.webp";
-const aboutPortraitSrc = "/assets/about_editorial_portrait_3732f601.webp";
-const deskSrc = "/assets/process-desk_14ebfaee.jpg";
+const heroPortraitSrc = "/assets/hero-portrait.webp";
+const aboutPortraitSrc = "/assets/about-portrait.webp";
+const deskSrc = "/assets/process-desk.webp";
 const whatsappUrl = "https://wa.me/5545999916583?text=Oi%20Francisco%2C%20quero%20conversar%20sobre%20um%20projeto.";
 
 const services = [
@@ -92,7 +92,7 @@ export default function Home() {
 
           <div className="hero-visual">
             <div className="portrait-frame">
-              <img src={heroPortraitSrc} alt="Francisco Schmith sentado, em retrato editorial com iluminação verde discreta" width={2048} height={1365} fetchPriority="high" />
+              <img src={heroPortraitSrc} alt="Francisco Schmith sentado, em retrato editorial com iluminação verde discreta" width={840} height={560} fetchPriority="high" decoding="async" />
               <div className="portrait-tint" />
               <div className="portrait-caption"><span>Francisco Schmith</span><span>produto digital · 2026</span></div>
             </div>
@@ -145,11 +145,11 @@ export default function Home() {
       </section>
 
       <section className="method-section dark-section section-pad">
-        <div className="container method-grid"><div><div className="eyebrow"><span className="eyebrow-dot" /> como funciona</div><h2>Clareza para começar.<br /><em>Presença para entregar.</em></h2><img className="desk-image" src={deskSrc} alt="Mesa de trabalho com mapa de processo" /></div><div className="steps"><div className="step"><span>01</span><div><h3>Conversa sem roteiro pronto</h3><p>Você me conta onde a operação trava. Eu faço as perguntas certas antes de sugerir a solução.</p></div></div><div className="step"><span>02</span><div><h3>Escopo que cabe na realidade</h3><p>Uma proposta enxuta, com etapas, investimento e o que fica de fora. Sem surpresa no meio do caminho.</p></div></div><div className="step"><span>03</span><div><h3>Construção com você por perto</h3><p>O projeto avança em ciclos curtos, com validações reais e espaço para ajustar o que importa.</p></div></div><div className="step"><span>04</span><div><h3>Entrega que não abandona</h3><p>Treinamento, documentação essencial e suporte para o negócio seguir funcionando depois do lançamento.</p></div></div></div></div>
+        <div className="container method-grid"><div><div className="eyebrow"><span className="eyebrow-dot" /> como funciona</div><h2>Clareza para começar.<br /><em>Presença para entregar.</em></h2><img className="desk-image" src={deskSrc} alt="Mesa de trabalho com mapa de processo" width={1400} height={1050} loading="lazy" decoding="async" /></div><div className="steps"><div className="step"><span>01</span><div><h3>Conversa sem roteiro pronto</h3><p>Você me conta onde a operação trava. Eu faço as perguntas certas antes de sugerir a solução.</p></div></div><div className="step"><span>02</span><div><h3>Escopo que cabe na realidade</h3><p>Uma proposta enxuta, com etapas, investimento e o que fica de fora. Sem surpresa no meio do caminho.</p></div></div><div className="step"><span>03</span><div><h3>Construção com você por perto</h3><p>O projeto avança em ciclos curtos, com validações reais e espaço para ajustar o que importa.</p></div></div><div className="step"><span>04</span><div><h3>Entrega que não abandona</h3><p>Treinamento, documentação essencial e suporte para o negócio seguir funcionando depois do lançamento.</p></div></div></div></div>
       </section>
 
       <section className="about-section section-pad" id="sobre">
-        <div className="container about-grid"><div className="about-photo"><img src={aboutPortraitSrc} alt="Francisco Schmith de blazer escuro em retrato profissional" width={1638} height={2048} loading="lazy" decoding="async" /><span>02 / 06</span></div><div className="about-copy"><div className="eyebrow"><span className="eyebrow-dot" /> sobre o trabalho</div><h2>Eu gosto de tecnologia.<br /><em>Mas gosto mais de contexto.</em></h2><p>Sou Francisco Schmith. Minha formação mistura Engenharia Agrícola, agronegócio, educação e produto digital. Essa trajetória me ensinou a olhar primeiro para o funcionamento das coisas e só depois para o código.</p><p>Hoje, ajudo negócios a transformar processos confusos em experiências mais simples para quem vende, atende e decide.</p><div className="about-tags"><span>Engenharia Agrícola</span><span>MBA em Agronegócio</span><span>Produto digital</span><span>Marketing</span></div><button className="text-link dark-link" onClick={() => scrollTo("#contato")}>Conhecer o meu jeito de trabalhar <ArrowRight size={15} /></button></div></div>
+        <div className="container about-grid"><div className="about-photo"><img src={aboutPortraitSrc} alt="Francisco Schmith de blazer escuro em retrato profissional" width={640} height={800} loading="lazy" decoding="async" /><span>02 / 06</span></div><div className="about-copy"><div className="eyebrow"><span className="eyebrow-dot" /> sobre o trabalho</div><h2>Eu gosto de tecnologia.<br /><em>Mas gosto mais de contexto.</em></h2><p>Sou Francisco Schmith. Minha formação mistura Engenharia Agrícola, agronegócio, educação e produto digital. Essa trajetória me ensinou a olhar primeiro para o funcionamento das coisas e só depois para o código.</p><p>Hoje, ajudo negócios a transformar processos confusos em experiências mais simples para quem vende, atende e decide.</p><div className="about-tags"><span>Engenharia Agrícola</span><span>MBA em Agronegócio</span><span>Produto digital</span><span>Marketing</span></div><button className="text-link dark-link" onClick={() => scrollTo("#contato")}>Conhecer o meu jeito de trabalhar <ArrowRight size={15} /></button></div></div>
       </section>
 
       <section className="faq-section section-pad" id="faq"><div className="container faq-grid"><div><div className="eyebrow"><span className="eyebrow-dot" /> perguntas frequentes</div><h2>Antes de<br /><em>começar.</em></h2></div><div className="faq-list">{faqs.map(([question, answer], index) => <div className={openFaq === index ? "faq-item open" : "faq-item"} key={question}><button onClick={() => setOpenFaq(openFaq === index ? null : index)}><span>{question}</span>{openFaq === index ? <CircleDot size={16} /> : <Plus size={18} />}</button><div className="faq-answer"><p>{answer}</p></div></div>)}</div></div></section>
