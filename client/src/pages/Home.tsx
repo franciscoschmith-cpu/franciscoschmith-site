@@ -1,4 +1,5 @@
 import CaseDevices from "@/components/CaseDevices";
+import { content } from "@/content";
 import { ArrowDown, ArrowRight, ArrowUpRight, Check, CircleDot, Menu, Minus, Plus } from "lucide-react";
 import { useState } from "react";
 
@@ -7,37 +8,17 @@ const aboutPortraitSrc = "/assets/about-portrait.webp";
 const deskSrc = "/assets/process-desk.webp";
 const whatsappUrl = "https://wa.me/5545999916583?text=Oi%20Francisco%2C%20quero%20conversar%20sobre%20um%20projeto.";
 
-const services = [
-  {
-    number: "01",
-    title: "Sites que trazem clientes",
-    audience: "Para clínicas, academias e negócios locais que precisam explicar seu valor e gerar uma próxima conversa.",
-    deliver: "Sites institucionais, landing pages e páginas de campanha com oferta clara, prova e chamada para ação.",
-    result: "mais clareza para vender",
-  },
-  {
-    number: "02",
-    title: "Sistemas que tiram você da planilha",
-    audience: "Para operações que vivem entre planilhas, mensagens soltas e retrabalho.",
-    deliver: "Sistemas internos sob medida para organizar pedidos, atendimento, dados e decisões em um só lugar.",
-    result: "mais controle na operação",
-  },
-  {
-    number: "03",
-    title: "Automações que devolvem seu tempo",
-    audience: "Para tarefas repetitivas que consomem horas e dependem de memória ou cobrança.",
-    deliver: "Integrações e rotinas automáticas para reduzir trabalho manual sem complicar o processo.",
-    result: "menos tempo no operacional",
-  },
-];
-
-const faqs = [
+const faqs: [string, string][] = [
   ["Você trabalha só com empresas de Cascavel?", "Não. A base é em Cascavel, mas o processo é remoto e funciona com clientes em qualquer lugar do Brasil."],
-  ["Quanto tempo leva um projeto?", "Depende do escopo. Um site enxuto pode avançar em algumas semanas; sistemas e automações são divididos em etapas para validar o que importa primeiro."],
+  ["Quanto tempo leva um projeto?", "Depende do tipo de projeto. Um site costuma avançar mais rápido que um sistema ou uma automação, que são divididos em etapas para validar o que importa primeiro."
+    + (content.faq.prazoPorTipo ? ` Prazo médio por tipo de projeto: ${content.faq.prazoPorTipo}.` : "")],
   ["Você entrega só a interface?", "Não. O projeto pode incluir estratégia, interface, sistema, integrações, treinamento e documentação essencial."],
   ["Eu preciso fornecer todo o conteúdo?", "Você traz o conhecimento do negócio. Eu ajudo a organizar a informação, definir a estrutura e identificar o que ainda precisa ser produzido."],
-  ["Existe suporte depois da entrega?", "Sim. A entrega inclui orientação para a continuidade e podemos combinar suporte, ajustes e evolução conforme a necessidade."],
-  ["Como saber o investimento?", "Depois de uma conversa curta sobre o problema, envio uma proposta com escopo, etapas e investimento. Sem orçamento genérico."],
+  ["Existe suporte depois da entrega?", "Sim. A entrega inclui treinamento e documentação para você seguir usando o que foi construído."
+    + (content.faq.autonomiaEdicao ? ` Sobre a autonomia para editar depois: ${content.faq.autonomiaEdicao}.` : "")
+    + (content.faq.comoFuncionaSuporte ? ` Sobre como funciona o suporte: ${content.faq.comoFuncionaSuporte}.` : "")],
+  ["Como saber o investimento?", "Depois de uma conversa curta sobre o problema, envio uma proposta com escopo, etapas e investimento. Sem orçamento genérico."
+    + (content.faq.precoFaixa ? ` Como referência, a faixa de preço costuma ficar em ${content.faq.precoFaixa}.` : "")],
 ];
 
 const featuredCases = [
@@ -80,14 +61,14 @@ export default function Home() {
 
         <div className="hero-content container">
           <div className="hero-copy">
-            <div className="eyebrow light"><span className="eyebrow-dot" /> estratégia antes da tecnologia</div>
-            <h1>Menos improviso.<br /><em>Mais negócio funcionando.</em></h1>
-            <p className="hero-lede">Sites que trazem clientes, sistemas que tiram você da planilha e automações que devolvem seu tempo.</p>
+            <div className="eyebrow light"><span className="eyebrow-dot" /> {content.hero.eyebrow}</div>
+            <h1>{content.hero.titleStrong}<br /><em>{content.hero.titleSerif}</em></h1>
+            <p className="hero-lede">{content.hero.subtitle}</p>
             <div className="hero-actions">
-              <button className="button button-acid" onClick={() => window.open(whatsappUrl, "_blank")}>Me conta o problema <ArrowRight size={16} /></button>
-              <button className="text-link light-link" onClick={() => scrollTo("#cases")}>Ver como isso funciona <ArrowDown size={15} /></button>
+              <button className="button button-acid" onClick={() => window.open(whatsappUrl, "_blank")}>{content.hero.ctaPrimary} <ArrowRight size={16} /></button>
+              <button className="text-link light-link" onClick={() => scrollTo("#cases")}>{content.hero.ctaSecondary} <ArrowDown size={15} /></button>
             </div>
-            <div className="hero-proof"><span>Atendimento remoto</span><span className="proof-line" /><span>Cascavel, PR · Brasil</span></div>
+            <div className="hero-proof"><span>{content.hero.proofLeft}</span><span className="proof-line" /><span>{content.hero.proofRight}</span></div>
           </div>
 
           <div className="hero-visual">
@@ -108,25 +89,25 @@ export default function Home() {
         <div className="container intro-grid">
           <div className="section-label"><span className="label-number">01</span><span>o ponto de partida</span></div>
           <div className="intro-main">
-            <h2>O gargalo raramente é a falta de tecnologia. <span>É a falta de clareza.</span></h2>
-            <p className="intro-lede">Antes de abrir o editor, eu entendo onde o negócio perde tempo, informação ou oportunidade. Só então escolho o que precisa ser construído e o que pode continuar simples.</p>
+            <h2>{content.intro.titleStrong}<br /><em>{content.intro.titleSerif}</em></h2>
+            <p className="intro-lede">{content.intro.text}</p>
             <div className="signal-row">
               <div className="signal"><span className="signal-icon"><Minus size={15} strokeWidth={1.5} /></span><div><strong>menos ruído</strong><span>um lugar certo para cada coisa</span></div></div>
               <div className="signal"><span className="signal-icon">◎</span><div><strong>mais visão</strong><span>decisões baseadas no processo real</span></div></div>
             </div>
           </div>
-          <div className="intro-aside"><span className="aside-quote">“A tecnologia entra depois que o problema ficou claro.”</span><span className="aside-author">princípio de trabalho</span></div>
+          <div className="intro-aside"><span className="aside-quote">“{content.intro.quote}”</span><span className="aside-author">princípio de trabalho</span></div>
         </div>
       </section>
 
       <section className="services-section section-pad dark-section">
         <div className="container">
-          <div className="section-head split-head"><div><div className="eyebrow"><span className="eyebrow-dot" /> o que eu faço</div><h2>Três caminhos.<br /><em>Um mesmo objetivo.</em></h2></div><p>Escolher a ferramenta certa é parte do trabalho. Saber o que não construir também.</p></div>
+          <div className="section-head split-head"><div><div className="eyebrow"><span className="eyebrow-dot" /> o que eu faço</div><h2>{content.services.titleStrong}<br /><em>{content.services.titleSerif}</em></h2></div><p>{content.services.subtitle}</p></div>
           <div className="service-list">
-            {services.map((service) => <article className="service-row commercial-service-row" key={service.number}>
+            {content.services.items.map((service) => <article className="service-row commercial-service-row" key={service.number}>
               <span className="service-number">{service.number}</span>
-              <div className="service-main"><h3>{service.title}</h3><p><strong>Para quem:</strong> {service.audience}</p></div>
-              <div className="service-detail"><p><strong>O que entra:</strong> {service.deliver}</p><span className="service-tag">{service.result}</span></div>
+              <div className="service-main"><h3>{service.title}</h3><p><strong>O que é:</strong> {service.oQueE}</p></div>
+              <div className="service-detail"><p><strong>Por que se contrata:</strong> {service.porQue}</p><span className="service-tag">{service.tag}</span></div>
             </article>)}
           </div>
         </div>
@@ -145,16 +126,16 @@ export default function Home() {
       </section>
 
       <section className="method-section dark-section section-pad">
-        <div className="container method-grid"><div><div className="eyebrow"><span className="eyebrow-dot" /> como funciona</div><h2>Clareza para começar.<br /><em>Presença para entregar.</em></h2><img className="desk-image" src={deskSrc} alt="Mesa de trabalho com mapa de processo" width={1400} height={1050} loading="lazy" decoding="async" /></div><div className="steps"><div className="step"><span>01</span><div><h3>Conversa sem roteiro pronto</h3><p>Você me conta onde a operação trava. Eu faço as perguntas certas antes de sugerir a solução.</p></div></div><div className="step"><span>02</span><div><h3>Escopo que cabe na realidade</h3><p>Uma proposta enxuta, com etapas, investimento e o que fica de fora. Sem surpresa no meio do caminho.</p></div></div><div className="step"><span>03</span><div><h3>Construção com você por perto</h3><p>O projeto avança em ciclos curtos, com validações reais e espaço para ajustar o que importa.</p></div></div><div className="step"><span>04</span><div><h3>Entrega que não abandona</h3><p>Treinamento, documentação essencial e suporte para o negócio seguir funcionando depois do lançamento.</p></div></div></div></div>
+        <div className="container method-grid"><div><div className="eyebrow"><span className="eyebrow-dot" /> como funciona</div><h2>{content.method.titleStrong}<br /><em>{content.method.titleSerif}</em></h2><img className="desk-image" src={deskSrc} alt="Mesa de trabalho com mapa de processo" width={1400} height={1050} loading="lazy" decoding="async" /></div><div className="steps">{content.method.steps.map((step) => <div className="step" key={step.number}><span>{step.number}</span><div><h3>{step.title}</h3><p>{step.text}</p></div></div>)}{content.method.prazoMedio && <p className="method-note">Prazo médio: {content.method.prazoMedio}</p>}</div></div>
       </section>
 
       <section className="about-section section-pad" id="sobre">
-        <div className="container about-grid"><div className="about-photo"><img src={aboutPortraitSrc} alt="Francisco Schmith de blazer escuro em retrato profissional" width={640} height={800} loading="lazy" decoding="async" /><span>02 / 06</span></div><div className="about-copy"><div className="eyebrow"><span className="eyebrow-dot" /> sobre o trabalho</div><h2>Eu gosto de tecnologia.<br /><em>Mas gosto mais de contexto.</em></h2><p>Sou Francisco Schmith. Minha formação mistura Engenharia Agrícola, agronegócio, educação e produto digital. Essa trajetória me ensinou a olhar primeiro para o funcionamento das coisas e só depois para o código.</p><p>Hoje, ajudo negócios a transformar processos confusos em experiências mais simples para quem vende, atende e decide.</p><div className="about-tags"><span>Engenharia Agrícola</span><span>MBA em Agronegócio</span><span>Produto digital</span><span>Marketing</span></div><button className="text-link dark-link" onClick={() => scrollTo("#contato")}>Conhecer o meu jeito de trabalhar <ArrowRight size={15} /></button></div></div>
+        <div className="container about-grid"><div className="about-photo"><img src={aboutPortraitSrc} alt="Francisco Schmith de blazer escuro em retrato profissional" width={640} height={800} loading="lazy" decoding="async" /><span>02 / 06</span></div><div className="about-copy"><div className="eyebrow"><span className="eyebrow-dot" /> sobre o trabalho</div><h2>{content.about.titleStrong}<br /><em>{content.about.titleSerif}</em></h2><p>Sou Francisco Schmith, de Cascavel. Minha formação mistura <strong>Engenharia Agrícola</strong>, <strong>agronegócio</strong>, educação e produto digital, e trabalhei com marketing antes de construir software.</p><p>Isso muda o jeito que eu trabalho: ferramenta que ignora como a equipe realmente opera é abandonada em duas semanas, por melhor que seja. Por isso meus projetos começam com pergunta e só depois viram sistema.</p><div className="about-tags">{content.about.tags.map((tag) => <span key={tag}>{tag}</span>)}</div><button className="text-link dark-link" onClick={() => scrollTo("#contato")}>Conhecer o meu jeito de trabalhar <ArrowRight size={15} /></button></div></div>
       </section>
 
-      <section className="faq-section section-pad" id="faq"><div className="container faq-grid"><div><div className="eyebrow"><span className="eyebrow-dot" /> perguntas frequentes</div><h2>Antes de<br /><em>começar.</em></h2></div><div className="faq-list">{faqs.map(([question, answer], index) => <div className={openFaq === index ? "faq-item open" : "faq-item"} key={question}><button onClick={() => setOpenFaq(openFaq === index ? null : index)}><span>{question}</span>{openFaq === index ? <CircleDot size={16} /> : <Plus size={18} />}</button><div className="faq-answer"><p>{answer}</p></div></div>)}</div></div></section>
+      <section className="faq-section section-pad" id="faq"><div className="container faq-grid"><div><div className="eyebrow"><span className="eyebrow-dot" /> perguntas frequentes</div><h2>{content.faq.titleStrong}<br /><em>{content.faq.titleSerif}</em></h2></div><div className="faq-list">{faqs.map(([question, answer], index) => <div className={openFaq === index ? "faq-item open" : "faq-item"} key={question}><button onClick={() => setOpenFaq(openFaq === index ? null : index)}><span>{question}</span>{openFaq === index ? <CircleDot size={16} /> : <Plus size={18} />}</button><div className="faq-answer"><p>{answer}</p></div></div>)}</div></div></section>
 
-      <section className="contact-section" id="contato"><div className="container contact-inner"><div><div className="eyebrow light"><span className="eyebrow-dot" /> próximo passo</div><h2>Tem um processo<br /><em>pedindo clareza?</em></h2><p>Me conta onde a operação trava. Se eu puder ajudar, a gente descobre isso na primeira conversa.</p></div><button className="button button-acid contact-button" onClick={() => window.open(whatsappUrl, "_blank")}>Abrir conversa no WhatsApp <ArrowUpRight size={16} /></button></div><footer className="container footer"><div className="footer-brand"><span className="brand-mark">FS</span><span>Francisco Schmith<br /><small>Cascavel, Paraná · Brasil</small></span></div><div className="footer-links"><button onClick={() => scrollTo("#inicio")}>voltar ao topo ↑</button><a href="mailto:oi@franciscoschmith.com">oi@franciscoschmith.com</a><span>© 2026</span></div></footer></section>
+      <section className="contact-section" id="contato"><div className="container contact-inner"><div><div className="eyebrow light"><span className="eyebrow-dot" /> próximo passo</div><h2>{content.cta.titleStrong}<br /><em>{content.cta.titleSerif}</em></h2><p>{content.cta.text}</p></div><button className="button button-acid contact-button" onClick={() => window.open(whatsappUrl, "_blank")}>{content.cta.button} <ArrowUpRight size={16} /></button></div><footer className="container footer"><div className="footer-brand"><span className="brand-mark">FS</span><span>Francisco Schmith<br /><small>Cascavel, Paraná · Brasil</small></span></div><div className="footer-links"><button onClick={() => scrollTo("#inicio")}>voltar ao topo ↑</button><a href="mailto:oi@franciscoschmith.com">oi@franciscoschmith.com</a><span>© 2026</span></div></footer></section>
     </main>
   );
 }
