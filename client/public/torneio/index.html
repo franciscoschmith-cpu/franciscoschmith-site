@@ -539,6 +539,7 @@ td.ix{font-family:var(--disp);color:var(--dim);text-align:right;width:34px;font-
 
 <div class="rodape">
   <span id="resumo">—</span>
+  <span id="nuvemStatus" class="mini" style="margin-left:10px"></span>
   <span class="esp"></span>
   <span id="rodBotoes"></span>
   <input type="file" id="arq" accept=".json" hidden onchange="restaurar(this)">
@@ -637,7 +638,11 @@ function carregar(){
   }catch(e){}
   return JSON.parse(JSON.stringify(VAZIO));
 }
-function salvar(){ try{ localStorage.setItem("hk-torneio",JSON.stringify(D)); }catch(e){ aviso("Não consegui salvar no navegador.",1); } }
+function salvar(){
+  try{ localStorage.setItem("hk-torneio",JSON.stringify(D)); localStorage.setItem("hk-torneio-ts",String(Date.now())); }
+  catch(e){ aviso("Não consegui salvar no navegador.",1); }
+  agendarSalvarNuvem();
+}
 const at=id=>D.atletas.find(a=>a.id===id);
 const nomeDe=id=>{const a=at(id);return a?a.nome:"—";};
 const PART=["de","da","do","das","dos","e","di","du","del","van","von"];
@@ -2578,6 +2583,55 @@ async function authHeaders(){
   const t=await tokenValido();
   return t?{apikey:NUVEM_KEY,Authorization:"Bearer "+t}:{apikey:NUVEM_KEY,Authorization:"Bearer "+NUVEM_KEY};
 }
+
+/* ===== backup na nuvem (tabela torneio_estado, só organizador acessa) ===== */
+function marcaNuvem(txt){ const el=document.getElementById("nuvemStatus"); if(el) el.textContent=txt; }
+let nuvemTimer=null;
+function agendarSalvarNuvem(){
+  if(!pegaSessao()) return;
+  clearTimeout(nuvemTimer);
+  marcaNuvem("· salvando na nuvem…");
+  nuvemTimer=setTimeout(salvarNuvem,1500);
+}
+async function salvarNuvem(){
+  if(!pegaSessao()) return;
+  try{
+    const agora=new Date().toISOString();
+    const r=await fetch(NUVEM_BASE+"/rest/v1/torneio_estado",{method:"POST",
+      headers:Object.assign(await authHeaders(),{"Content-Type":"application/json",
+        Prefer:"resolution=merge-duplicates,return=minimal"}),
+      body:JSON.stringify({chave:CHAVE,dados:D,atualizado_em:agora})});
+    if(!r.ok) throw new Error(r.status);
+    localStorage.setItem("hk-torneio-ts",String(Date.parse(agora)));
+    marcaNuvem("· salvo na nuvem");
+  }catch(e){ marcaNuvem("· não salvou na nuvem (sem internet?)"); }
+}
+async function carregarNuvem(){
+  try{
+    const r=await fetch(NUVEM_BASE+"/rest/v1/torneio_estado?chave=eq."+encodeURIComponent(CHAVE)+"&select=dados,atualizado_em",
+      {headers:await authHeaders(),cache:"no-store"});
+    if(!r.ok) throw new Error(r.status);
+    const linhas=await r.json();
+    const linha=linhas&&linhas[0];
+    if(!linha||!linha.dados){ marcaNuvem("· sincronizado"); return; }
+    const tsNuvem=linha.atualizado_em?Date.parse(linha.atualizado_em):0;
+    const tsLocal=Number(localStorage.getItem("hk-torneio-ts")||0);
+    if(tsNuvem>tsLocal){
+      D=Object.assign(JSON.parse(JSON.stringify(VAZIO)),linha.dados);
+      D.atletas.forEach(recalcular);
+      localStorage.setItem("hk-torneio",JSON.stringify(D));
+      localStorage.setItem("hk-torneio-ts",String(tsNuvem));
+      pinta();
+      marcaNuvem("· atualizado da nuvem");
+    } else if(tsLocal>tsNuvem){
+      salvarNuvem();
+    } else { marcaNuvem("· sincronizado"); }
+  }catch(e){ marcaNuvem("· sem conexão com a nuvem"); }
+}
+document.addEventListener("visibilitychange",()=>{
+  if(document.hidden && nuvemTimer){ clearTimeout(nuvemTimer); salvarNuvem(); }
+});
+
 window.ENTRAR=async function(){
   const email=(($("#loginEmail")||{}).value||"").trim();
   const senha=($("#loginSenha")||{}).value||"";
@@ -2593,13 +2647,14 @@ window.ENTRAR=async function(){
     if(!r.ok){ if(erroEl) erroEl.textContent="E-mail ou senha incorretos."; return; }
     salvaSessao({access_token:j.access_token,refresh_token:j.refresh_token,expira_em:Date.now()+(j.expires_in||3600)*1000});
     const l=$("#login"); if(l) l.style.display="none";
+    carregarNuvem();
   }catch(e){ if(erroEl) erroEl.textContent="Não consegui entrar. Confira a internet."; }
   finally{ if(bt){ bt.disabled=false; bt.textContent="Entrar"; } }
 };
 window.SAIR=function(){ salvaSessao(null); location.reload(); };
 (function(){
   const s=pegaSessao();
-  if(s){ const l=$("#login"); if(l) l.style.display="none"; }
+  if(s){ const l=$("#login"); if(l) l.style.display="none"; carregarNuvem(); }
   const s2=$("#loginSenha"); if(s2) s2.addEventListener("keydown",e=>{ if(e.key==="Enter") window.ENTRAR(); });
   const s1=$("#loginEmail"); if(s1) s1.addEventListener("keydown",e=>{ if(e.key==="Enter") window.ENTRAR(); });
 })();
